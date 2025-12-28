@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catégorie</title>
+
+    <link rel="icon" href="./public/assets/favicon/Favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="./public/assets/css/system.css">
+    <link rel="stylesheet" href="./public/assets/css/style.css">
+</head>
+
+<body>
+    <!-- Loader -->
+        <div id="loader" class="loader-container">
+            <div class="spinner"></div>
+        </div>
+    <!-- ------ -->
+
+    <!-- Navigation -->
+        <div class="NavWrapper">
+            <!-- List menu mobile -->
+                <div class="Menu-Mobile">
+                    <div class="ListMenu">
+                        <a href="#Folio">Mon portfolio</a>
+                        <a href="#">A-propos de moi</a>
+                        <a href="#">Contact</a>
+                    </div>
+                    <img class="MenuIcon" src="./public/assets/images/Icon.svg" alt="Icon en7design">
+                </div>
+            <!---------------------->
+
+            <!-- Navbar Desktop -->
+                <nav class="Navbar">
+                    <div class="Navbar-Container">
+                        <a href="./index.html">
+                            <img class="Logo" src="./public/assets/images/Logo.svg" alt="Logo EN7DESIGN" loading="eager">
+                        </a>
+                        <!-- Menu dekstop -->
+                        <ul class="Menu-Desktop">
+                            <li><a href="#Folio">Mon portfolio</a></li>
+                            <li><a href="#">A-propos de moi</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+
+                        <!-- Btn Burger -->
+                        <button class="BtnBurger">
+                            <svg viewBox="0 0 64 48">
+                                <path d="M19,15 L45,15 C70,15 58,-2 49.0177126,7 L19,37"></path>
+                                <path d="M19,24 L45,24 C61.2371586,24 57,49 41,33 L32,24"></path>
+                                <path d="M45,33 L19,33 C-8,33 6,-2 22,14 L45,37"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </nav>
+            <!-- -------------- -->
+        </div>
+    <!-- ---------- -->
+
+    <!-- Cat-header -->
+        <header id="category-bg">
+            <p>• Projet •</p>
+            <h1 id="category-title"></h1>
+        </header>
+    <!-- -------- -->
+    
+    <main id="projects-list">
+        <!-- Les cards de projets seront insérées ici -->
+    </main>
+
+
+    <!-- Script -->
+    <script src="./scripts/BtnBurger.js"></script>
+    <script src="./scripts/BtnTape.js"></script>
+
+    <!-- Dynamic -->
+    <script src="./scripts/data.js"></script>
+    <script src="./scripts/utils.js"></script>
+    <script src="./scripts/categorie.js"></script>
+</body>
+</html>

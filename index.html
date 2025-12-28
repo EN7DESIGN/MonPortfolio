@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>EN7DESIGN</title>
+        <meta name="description"
+            content="Brand Identity Consultant | UI UX Designer | Graphic Designer
+        Je suis votre conseiller en stratégie de marque, ma mission est d’être votre copilote tout au long du parcours de votre projet, de son lancement jusqu’à son apogée.">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://en7design.com">
+        <meta property="og:title" content="EN7DESIGN">
+        <meta property="og:description"
+            content="Brand Identity Consultant | UI UX Designer | Graphic Designer
+        Je suis votre conseiller en stratégie de marque, ma mission est d’être votre copilote tout au long du parcours de votre projet, de son lancement jusqu’à son apogée.">
+        <meta property="og:image" content="./public/assets/Favicon/Webclip.png">
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="https://en7design.com">
+        <meta property="twitter:title" content="EN7DESIGN">
+        <meta property="twitter:description" content="EN7DESIGN - Portfolio de Sept Ngiene">
+        <meta property="twitter:image" content="./public/assets/favicon/Webclip.png">
+
+        <link rel="icon" href="./public/assets/favicon/Favicon.svg" type="image/x-icon">
+        <link rel="stylesheet" href="./public/assets/css/system.css">
+        <link rel="stylesheet" href="./public/assets/css/style.css">
+    </head>
+
+    <body>
+        <!-- Navigation -->
+            <div class="NavWrapper">
+                <!-- List menu mobile -->
+                    <div class="Menu-Mobile">
+                        <div class="ListMenu">
+                            <a href="#Folio">Mon portfolio</a>
+                            <a href="#">A-propos de moi</a>
+                            <a href="#">Contact</a>
+                        </div>
+                        <img class="MenuIcon" src="./public/assets/images/Icon.svg" alt="Icon en7design">
+                    </div>
+                <!---------------------->
+
+                <!-- Navbar Desktop -->
+                    <nav class="Navbar">
+                        <div class="Navbar-Container">
+                            <a href="./index.html">
+                                <img class="Logo" src="./public/assets/images/Logo.svg" alt="Logo EN7DESIGN" loading="eager">
+                            </a>
+                            <!-- Menu dekstop -->
+                            <ul class="Menu-Desktop">
+                                <li><a href="#Folio">Mon portfolio</a></li>
+                                <li><a href="#">A-propos de moi</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+
+                            <!-- Btn Burger -->
+                            <button class="BtnBurger">
+                                <svg viewBox="0 0 64 48">
+                                    <path d="M19,15 L45,15 C70,15 58,-2 49.0177126,7 L19,37"></path>
+                                    <path d="M19,24 L45,24 C61.2371586,24 57,49 41,33 L32,24"></path>
+                                    <path d="M45,33 L19,33 C-8,33 6,-2 22,14 L45,37"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </nav>
+                <!-- -------------- -->
+            </div>
+        <!-- ---------- -->
+
+        <!-- Le Header -->
+            <header>
+                <!-- Hero section -->
+                    <section class="HeroSection">
+                        <div class="HeroContainer">
+                            <!-- Tof -->
+                            <img class="Tof" src="./public/assets/images/Tof.png" alt="Photo de Sept Ngiene" loading="eager">
+
+                            <!-- Right Title Container -->
+                            <div class="TitleContainer">
+                                <!-- Bloc 1 -->
+                                <div class="TitleBloc-1">
+                                    <div class="Grp1">
+                                        <p class="P1 intro-words">Hey, Je suis</p>
+                                        <p class="P2 SplitText">Sept Ngiene</p>
+                                    </div>
+                                    <p class="P3">Brand Identity Consultant | UI UX Designer | Graphic Designer</p>
+                                </div>
+                                <!-- Bloc 2 -->
+                                <div class="TitleBloc-2">
+                                    <p>Je suis votre conseiller en stratégie de marque, ma mission
+                                        est d’être votre copilote tout au long du parcours de votre
+                                        projet, de son lancement jusqu’à son apogée.
+                                    </p>
+                                    <p>Ensemble, mettons au monde vos rêves !</p>
+                                </div>
+
+                                <!-- Bouton -->
+                                <div id="slideBtn">
+                                    <button class="Button01 Primary Medium" role="button">
+                                        <img src="./public/assets/images/Icon-WhatsApp.svg" alt="">
+                                        Parlons de votre projet
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- --------------------- -->
+
+                            <!-- Line -->
+                            <a href="#Folio">
+                                <img class="Line" src="./public/assets/images/Line 1.svg" alt="">
+                            </a>
+                        </div>
+                    </section>
+                <!-- ------------ -->
+            </header>
+        <!-- -------- -->
+
+        <!-- Le main -->
+            <main>
+                <!-- Ils me font confiance -->
+                    <Section class="LogoClientSection">
+                        <p>Ils me font confiance</p>
+                        <div class="Wrapper">
+                            <div class="Container">
+                                <img src="./public/assets/images/LogoClients.png" alt="Les logos de mes clients">
+                                <img src="./public/assets/images/LogoClients.png" alt="Les logos de mes clients">
+                            </div>
+                        </div>
+                    </Section>
+                <!-- --------------------- -->
+
+                <!-- Folio Section -->
+                    <section id="Folio" class="Folio">
+                        <div class="Container">
+                            <!-- Title Bloc -->
+                                <div class="TitleBloc">
+                                    <h2>Portfolio</h2>
+                                    <p>• Quelques-unes de mes réalisations •</p>
+                                    <p>👇🏽 Cliquez sur une carte pour ouvrir un dossier de projet</p>
+                                </div>
+                            <!-- ---------- -->
+
+                            <!-- Card Container -->
+                                <div class="CardContainer">
+                                    <!-- Brand Identity -->
+                                    <div class="Card Brand" onclick="goToCategory('brand-identity')">
+                                        <p>• Projets •</p>
+                                        <h3>Brand<br>Identity</h3>
+                                    </div>
+                                    <!-- UI UX design -->
+                                    <div class="Card UIUX" onclick="goToCategory('ui-ux-design')">
+                                        <p>• Projets •</p>
+                                        <h3>UI UX<br>design</h3>
+                                    </div>
+                                    <!-- Visual design -->
+                                    <div class="Card Visual" onclick="goToCategory('visual-design')">
+                                        <p>• Projets •</p>
+                                        <h3>Visual<br>design</h3>
+                                    </div>
+                                    <!-- Graphic design -->
+                                    <div class="Card Graphic" onclick="goToCategory('graphic-design')">
+                                        <p>• Projets •</p>
+                                        <h3>Graphic<br>design</h3>
+                                    </div>
+
+                                    <!-- Illustration -->
+                                    <div class="illustBox scroll-reveal">
+                                    </div>
+                                </div>
+                            <!-- -------------- -->
+
+                            <!-- Bouton -->
+                            <button class="Button01 Primary Medium" role="button">
+                                <img src="./public/assets/images/Icon-WhatsApp.svg" alt="">
+                                Parlons de votre projet
+                            </button>
+                        </div>
+                    </section>
+                <!-- ------------- -->
+            </main>
+        <!-- ------- -->
+
+        <!-- le footer -->
+            <footer>
+                <div class="Footer_Title">
+                    <img src="./public/assets/images/Footer_Logo.svg" alt="Logo en7design" class="Footer_Logo">
+                    <p>Ensemble, mettons au monde vos rêves !</p>
+                </div>
+                <p class="Footer_TxtEmail">contact@en7design.com</p>
+
+                <div class="Footer_RSContainer">
+                    <!-- WhatsApp -->
+                    <a href="#">
+                        <img src="./public/assets/images/WhatsApp.svg" alt="">
+                    </a>
+                    <!-- Facebook -->
+                    <a href="#">
+                        <img src="./public/assets/images/Facebook.svg" alt="">
+                    </a>
+                    <!-- Instagram -->
+                    <a href="#">
+                        <img src="./public/assets/images/Instagram.svg" alt="">
+                    </a>
+                    <!-- Telegram -->
+                    <a href="#">
+                        <img src="./public/assets/images/Telegram.svg" alt="">
+                    </a>
+                </div>
+            </footer>
+        <!-- --------- -->
+
+        <!-- Script -->
+        <script src="./scripts/BtnBurger.js"></script>
+        <script src="./scripts/BtnTape.js"></script>
+        <script src="./scripts/card.js"></script>
+        <script src="./scripts/scroll.js"></script>
+        
+        <!-- Pour la dynamique -->
+            <script src="./scripts/data.js"></script>
+            <script>
+                function goToCategory(categoryId) {
+                window.location.href = `categorie.html?cat=${categoryId}`;
+                }
+            </script>
+        <!-- ----------------- -->
+
+        <!-- Script pour GSAP -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+        <script src="./scripts/GsapAnim.js"></script>
+        <!-- ----------------------- -->
+
+        <!-- Script pour dupliquer les logos dynamiquement dans le DOM sans les doubler dans le html -->
+            <script>
+                var copy = document.querySelector(".Container"); //la box qui contient les logos
+                var logosSection = document.querySelector(".Wrapper"); //la section ou box parent
+                // Nombre de copies à créer
+                var numberOfCopies = 4;
+
+                for (let i = 0; i < numberOfCopies; i++) {
+                    let clone = copy.cloneNode(true);
+                    logosSection.appendChild(clone);
+                }
+            </script>
+        <!-- --------------------------------------------------------------------------------------- -->
+    </body>
+</html>

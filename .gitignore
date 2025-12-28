@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+.DS_Store
+# Build output
+dist/
+build/
+
+# Logs
+*.log
+
+# OS generated files
+.env
+.idea/
+.vscode/
+
+#SCSS Files
+scss/
