@@ -36,64 +36,66 @@
     <div id="status"></div>
   </div>
 
-  <script type="module">
-    // 🔑 Change ce mot de passe
-    const ADMIN_PASSWORD = "@Boanerges7";
+<script>
+  // 🔑 Change ce mot de passe
+  const ADMIN_PASSWORD = "login";
 
-    function checkPassword() {
-      const input = document.getElementById('adminPassword').value;
-      if (input === ADMIN_PASSWORD) {
-        document.getElementById('password-screen').classList.add('hidden');
-        document.getElementById('form-section').classList.remove('hidden');
-      } else {
-        document.getElementById('password-error').style.display = 'block';
-      }
+  // Fonction accessible globalement (nécessaire pour onclick)
+  window.checkPassword = function() {
+    const input = document.getElementById('adminPassword').value;
+    if (input === ADMIN_PASSWORD) {
+      document.getElementById('password-screen').classList.add('hidden');
+      document.getElementById('form-section').classList.remove('hidden');
+    } else {
+      document.getElementById('password-error').style.display = 'block';
     }
+  };
 
-    async function submitProject() {
-      const status = document.getElementById('status');
-      status.textContent = "Envoi en cours...";
+  // Fonction pour soumettre le projet
+  window.submitProject = async function() {
+    const status = document.getElementById('status');
+    status.textContent = "Envoi en cours...";
 
-      try {
-        const title = document.getElementById('title').value;
-        const category = document.getElementById('category').value;
-        const description = document.getElementById('description').value;
-        const files = document.getElementById('images').files;
+    try {
+      const title = document.getElementById('title').value;
+      const category = document.getElementById('category').value;
+      const description = document.getElementById('description').value;
+      const files = document.getElementById('images').files;
 
-        if (!title || files.length === 0) {
-          throw new Error("Titre et au moins une image requis.");
-        }
-
-        // 🔁 On ne peut pas uploader les images → on enregistre juste les noms
-        const imageFilenames = Array.from(files).map(f => f.name);
-
-        // ⚙️ Importe la fonction de mise à jour
-        const { addProjectToData } = await import('./update-data.js');
-
-        // 🚀 Envoie les données à GitHub
-        const newId = await addProjectToData({
-          title,
-          description,
-          category,
-          images: imageFilenames
-        });
-
-        status.innerHTML = `
-          ✅ Projet ajouté avec succès !<br>
-          ID : <code>${newId}</code><br><br>
-          👉 <strong>Prochaine étape :</strong><br>
-          1. Mets les images suivantes dans ton dossier :<br>
-          <code>/public/assets/images/</code><br>
-          2. Envoie-les sur GitHub.<br>
-          3. Actualise ton site → le projet apparaîtra !
-        `;
-        status.style.whiteSpace = 'pre-wrap';
-
-      } catch (error) {
-        console.error(error);
-        status.innerHTML = `❌ Erreur :<br>${error.message}`;
+      if (!title || files.length === 0) {
+        throw new Error("Titre et au moins une image requis.");
       }
+
+      // 🔁 On ne peut pas uploader les images → on enregistre juste les noms
+      const imageFilenames = Array.from(files).map(f => f.name);
+
+      // ⚙️ Importe la fonction de mise à jour
+      const { addProjectToData } = await import('./update-data.js');
+
+      // 🚀 Envoie les données à GitHub
+      const newId = await addProjectToData({
+        title,
+        description,
+        category,
+        images: imageFilenames
+      });
+
+      status.innerHTML = `
+        ✅ Projet ajouté avec succès !<br>
+        ID : <code>${newId}</code><br><br>
+        👉 <strong>Prochaine étape :</strong><br>
+        1. Mets les images suivantes dans ton dossier :<br>
+        <code>/public/assets/images/</code><br>
+        2. Envoie-les sur GitHub.<br>
+        3. Actualise ton site → le projet apparaîtra !
+      `;
+      status.style.whiteSpace = 'pre-wrap';
+
+    } catch (error) {
+      console.error(error);
+      status.innerHTML = `❌ Erreur :<br>${error.message}`;
     }
+  };
 </script>
 
 </body>
