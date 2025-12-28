@@ -9,19 +9,19 @@
     },
     "ui-ux-design": {
       "title": "UI/UX design",
-      "background": "images/bg-uiux.jpg",
+      "background": "Texture-UIUX.png",
       "projects": [
         "project1766948949396"
       ]
     },
     "visual-design": {
       "title": "Visual design",
-      "background": "images/bg-visual.jpg",
+      "background": "Texture-Visual.png",
       "projects": []
     },
     "graphic-design": {
       "title": "Graphic design",
-      "background": "images/bg-graphic.jpg",
+      "background": "Texture-Graphic.png",
       "projects": []
     }
   },
