@@ -10,7 +10,9 @@
     "ui-ux-design": {
       "title": "UI/UX design",
       "background": "images/bg-uiux.jpg",
-      "projects": []
+      "projects": [
+        "project1766948949396"
+      ]
     },
     "visual-design": {
       "title": "Visual design",
@@ -31,6 +33,14 @@
         "Frame 2.png"
       ],
       "category": "brand-identity"
+    },
+    "project1766948949396": {
+      "title": "Projet 08",
+      "description": "Projet-08 pour UX UI Design",
+      "images": [
+        "Frame 1.png"
+      ],
+      "category": "ui-ux-design"
     }
   }
 }
