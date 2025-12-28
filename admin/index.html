@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Portfolio</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; max-width: 500px; margin: 0 auto; }
+    .hidden { display: none; }
+    input, select, textarea, button { width: 100%; padding: 0.5rem; margin: 0.5rem 0; }
+    button { background: #333; color: white; border: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>🔐 Admin Portfolio</h1>
+
+  <!-- Écran de mot de passe -->
+  <div id="password-screen">
+    <input type="password" id="adminPassword" placeholder="Mot de passe admin" />
+    <button onclick="checkPassword()">Accéder au formulaire</button>
+    <p id="password-error" style="color:red; display:none;">Mot de passe incorrect.</p>
+  </div>
+
+  <!-- Formulaire (caché au départ) -->
+  <div id="form-section" class="hidden">
+    <h2>➕ Ajouter un projet</h2>
+    <input id="title" placeholder="Titre du projet" />
+    <select id="category">
+      <option value="brand-identity">Brand identity</option>
+      <option value="ui-ux-design">UI/UX design</option>
+      <option value="visual-design">Visual design</option>
+      <option value="graphic-design">Graphic design</option>
+    </select>
+    <textarea id="description" placeholder="Description"></textarea>
+    <input type="file" id="images" multiple accept="image/*" />
+    <button onclick="submitProject()">Publier le projet</button>
+    <div id="status"></div>
+  </div>
+
+  <script>
+    // 🔑 Change ce mot de passe par un mot de passe que TOI seule connais
+    const ADMIN_PASSWORD = "@Boanerges7";
+
+    function checkPassword() {
+      const input = document.getElementById('adminPassword').value;
+      if (input === ADMIN_PASSWORD) {
+        document.getElementById('password-screen').classList.add('hidden');
+        document.getElementById('form-section').classList.remove('hidden');
+      } else {
+        document.getElementById('password-error').style.display = 'block';
+      }
+    }
+
+    async function submitProject() {
+      const status = document.getElementById('status');
+      status.textContent = "Envoi en cours...";
+
+      try {
+        const title = document.getElementById('title').value;
+        const category = document.getElementById('category').value;
+        const description = document.getElementById('description').value;
+        const files = document.getElementById('images').files;
+
+        if (!title || files.length === 0) {
+          throw new Error("Titre et au moins une image requis.");
+        }
+
+        // ⚠️ On ne peut pas uploader d’images vers GitHub directement depuis le navigateur
+        // → donc on va juste enregistrer les noms de fichiers, et TU les mettras manuellement dans /images
+        const imageFilenames = Array.from(files).map(f => f.name);
+
+        // Prépare les données du nouveau projet
+        const newProject = {
+          title,
+          description,
+          images: imageFilenames,
+          category
+        };
+
+        status.textContent = "✅ Projet prêt !\n\n⚠️ ATTENTION :\n1. Enregistre ces images dans ton dossier /public/assets/images/\n2. Envoie-les sur GitHub\n3. Le projet s’affichera dès que data.json sera mis à jour.";
+
+        console.log("Nouveau projet à ajouter :", newProject);
+        alert("Voir les instructions dans la page.");
+
+      } catch (error) {
+        status.textContent = "❌ " + error.message;
+      }
+    }
+  </script>
+</body>
+</html>
