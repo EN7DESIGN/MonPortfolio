@@ -1,0 +1,25 @@
+{
+  "categories": {
+    "brand-identity": {
+      "title": "Brand identity",
+      "background": "images/bg-brand.jpg",
+      "projects": []
+    },
+    "ui-ux-design": {
+      "title": "UI/UX design",
+      "background": "images/bg-uiux.jpg",
+      "projects": []
+    },
+    "visual-design": {
+      "title": "Visual design",
+      "background": "images/bg-visual.jpg",
+      "projects": []
+    },
+    "graphic-design": {
+      "title": "Graphic design",
+      "background": "images/bg-graphic.jpg",
+      "projects": []
+    }
+  },
+  "projects": {}
+}
