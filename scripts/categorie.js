@@ -1,30 +1,39 @@
+import { loadData } from './load-data.js';
+
 document.addEventListener('DOMContentLoaded', async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const categoryId = urlParams.get('cat');
 
-  if (!categoryId || !portfolioData.categories[categoryId]) {
+  // Charger les données
+  const data = await loadData();
+  const { categories, projects } = data;
+
+  if (!categoryId || !categories[categoryId]) {
     alert("Catégorie non trouvée");
     window.location.href = "index.html";
     return;
   }
 
-  const category = portfolioData.categories[categoryId];
+  const category = categories[categoryId];
 
-  // 1. Mise à jour du header
-  document.getElementById('category-title').innerHTML = category.title;
+  // Mise à jour du header
+  document.getElementById('category-title').textContent = category.title;
   document.getElementById('category-bg').style.backgroundImage = `url(${category.background})`;
 
-  // 2. Générer la liste des projets + collecter les miniatures
+  // Filtrer les projets de cette catégorie
+  const categoryProjects = {};
+  if (category.projects && Array.isArray(category.projects)) {
+    category.projects.forEach(projectId => {
+      if (projects[projectId]) {
+        categoryProjects[projectId] = projects[projectId];
+      }
+    });
+  }
+
+  // Générer les cards
   const projectsList = document.getElementById('projects-list');
   projectsList.innerHTML = '';
-  const previewImages = [];
-
-  category.projects.forEach(projectId => {
-    const project = portfolioData.projects[projectId];
-    if (!project) return;
-
-    previewImages.push(project.images[0]); // on preload la 1ère image de chaque projet
-
+  Object.entries(categoryProjects).forEach(([projectId, project]) => {
     const projectCard = document.createElement('div');
     projectCard.className = 'project-card';
     projectCard.innerHTML = `
@@ -37,9 +46,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     projectsList.appendChild(projectCard);
   });
 
-  // 3. Attendre le chargement + délai minimum
-  await showLoaderUntilReady(previewImages, 600, 5000);
-
-  // 4. Cacher le loader
+  // Cacher le loader
   document.getElementById('loader').classList.add('hidden');
 });

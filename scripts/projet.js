@@ -1,14 +1,17 @@
+import { loadData } from './load-data.js';
+
 document.addEventListener('DOMContentLoaded', async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const projectId = urlParams.get('project');
 
-  if (!projectId || !portfolioData.projects[projectId]) {
+  const data = await loadData();
+  const project = data.projects[projectId];
+
+  if (!projectId || !project) {
     alert("Projet non trouvé");
     window.location.href = "index.html";
     return;
   }
-
-  const project = portfolioData.projects[projectId];
 
   document.getElementById('project-title').textContent = project.title;
   document.getElementById('project-description').textContent = project.description;
@@ -22,8 +25,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     imagesContainer.appendChild(img);
   });
 
-  // Attendre que TOUTES les images du projet soient chargées + délai min
-  await showLoaderUntilReady(project.images, 600, 5000);
-
+  // Cacher le loader
   document.getElementById('loader').classList.add('hidden');
 });
