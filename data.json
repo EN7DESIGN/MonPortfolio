@@ -3,7 +3,9 @@
     "brand-identity": {
       "title": "Brand identity",
       "background": "images/bg-brand.jpg",
-      "projects": []
+      "projects": [
+        "project1766945343434"
+      ]
     },
     "ui-ux-design": {
       "title": "UI/UX design",
@@ -21,5 +23,14 @@
       "projects": []
     }
   },
-  "projects": {}
+  "projects": {
+    "project1766945343434": {
+      "title": "Projet007",
+      "description": "Projet 007",
+      "images": [
+        "Frame 2.png"
+      ],
+      "category": "brand-identity"
+    }
+  }
 }
