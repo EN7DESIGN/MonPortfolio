@@ -15,3 +15,5 @@ build/
 
 #SCSS Files
 scss/
+#admin
+admin/
