@@ -2,7 +2,7 @@
   "categories": {
     "brand-identity": {
       "title": "Brand identity",
-      "background": "images/bg-brand.jpg",
+      "background": "Texture-Brand.png",
       "projects": [
         "project1766945343434"
       ]
@@ -28,7 +28,7 @@
       "title": "Projet07",
       "description": "Projet 07",
       "images": [
-        "public/assets/images/Frame 2.png"
+        "Frame 2.png"
       ],
       "category": "brand-identity"
     }

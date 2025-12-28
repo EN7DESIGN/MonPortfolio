@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Mise à jour du header
   document.getElementById('category-title').textContent = category.title;
-  document.getElementById('category-bg').style.backgroundImage = `url(${category.background})`;
+  document.getElementById('category-bg').style.backgroundImage = `url(./public/assets/images/${category.background})`;
 
   // Filtrer les projets de cette catégorie
   const categoryProjects = {};
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     projectCard.className = 'project-card';
     projectCard.innerHTML = `
       <h3>${project.title}</h3>
-      <img src="${project.images[0]}" alt="${project.title}" />
+      <img src="./public/assets/images/${project.images[0]}" alt="${project.title}" />
     `;
     projectCard.addEventListener('click', () => {
       window.location.href = `projet.html?project=${projectId}`;
