@@ -36,8 +36,8 @@
     <div id="status"></div>
   </div>
 
-  <script>
-    // 🔑 Change ce mot de passe par un mot de passe que TOI seule connais
+  <script type="module">
+    // 🔑 Change ce mot de passe
     const ADMIN_PASSWORD = "@Boanerges7";
 
     function checkPassword() {
@@ -64,27 +64,37 @@
           throw new Error("Titre et au moins une image requis.");
         }
 
-        // ⚠️ On ne peut pas uploader d’images vers GitHub directement depuis le navigateur
-        // → donc on va juste enregistrer les noms de fichiers, et TU les mettras manuellement dans /images
+        // 🔁 On ne peut pas uploader les images → on enregistre juste les noms
         const imageFilenames = Array.from(files).map(f => f.name);
 
-        // Prépare les données du nouveau projet
-        const newProject = {
+        // ⚙️ Importe la fonction de mise à jour
+        const { addProjectToData } = await import('./update-data.js');
+
+        // 🚀 Envoie les données à GitHub
+        const newId = await addProjectToData({
           title,
           description,
-          images: imageFilenames,
-          category
-        };
+          category,
+          images: imageFilenames
+        });
 
-        status.textContent = "✅ Projet prêt !\n\n⚠️ ATTENTION :\n1. Enregistre ces images dans ton dossier /public/assets/images/\n2. Envoie-les sur GitHub\n3. Le projet s’affichera dès que data.json sera mis à jour.";
-
-        console.log("Nouveau projet à ajouter :", newProject);
-        alert("Voir les instructions dans la page.");
+        status.innerHTML = `
+          ✅ Projet ajouté avec succès !<br>
+          ID : <code>${newId}</code><br><br>
+          👉 <strong>Prochaine étape :</strong><br>
+          1. Mets les images suivantes dans ton dossier :<br>
+          <code>/public/assets/images/</code><br>
+          2. Envoie-les sur GitHub.<br>
+          3. Actualise ton site → le projet apparaîtra !
+        `;
+        status.style.whiteSpace = 'pre-wrap';
 
       } catch (error) {
-        status.textContent = "❌ " + error.message;
+        console.error(error);
+        status.innerHTML = `❌ Erreur :<br>${error.message}`;
       }
     }
-  </script>
+</script>
+
 </body>
 </html>
