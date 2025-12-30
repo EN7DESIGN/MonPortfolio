@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: "Body";
+  src: url("/font/Inter-VariableFont.ttf") format("woff2");
+  font-weight: 100, 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Title";
+  src: url("/font/Coralith.woff2") format("woff2"), url("/font/Coralith.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+html {
+  font-family: "Body";
+  font-size: 16px;
+  color: #16171F;
+}
+
+body {
+  font-family: "Body", sans-serif;
+  background-color: #FFFFFF;
+}
+
+input, select, textarea, button {
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+button {
+  background: #514444;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}/*# sourceMappingURL=admin.css.map */

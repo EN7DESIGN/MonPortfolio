@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Admin - Portfolio</title>
-  <style>
-    body { font-family: sans-serif; padding: 2rem; max-width: 500px; margin: 0 auto; }
-    .hidden { display: none; }
-    input, select, textarea, button { width: 100%; padding: 0.5rem; margin: 0.5rem 0; }
-    button { background: #333; color: white; border: none; cursor: pointer; }
-  </style>
+  <link rel="icon" href="/public/assets/favicon/Favicon.svg" type="image/x-icon">
+  <link rel="stylesheet" href="/public/assets/css/system.css">
+  <link rel="stylesheet" href="/public/assets/css/admin.css">
 </head>
 <body>
   <h1>🔐 Admin Portfolio</h1>
 
   <!-- Écran de mot de passe -->
   <div id="password-screen">
-    <input type="password" id="adminPassword" placeholder="Mot de passe admin" />
+    <div style="position: relative;">
+      <input type="password" id="adminPassword" placeholder="Mot de passe admin" style="padding-right: 40px;" />
+      <button type="button" onclick="togglePasswordVisibility()">👁️</button>
+    </div>
     <button onclick="checkPassword()">Accéder au formulaire</button>
     <p id="password-error" style="color:red; display:none;">Mot de passe incorrect.</p>
   </div>
@@ -95,6 +95,11 @@
       console.error(error);
       status.innerHTML = `❌ Erreur :<br>${error.message}`;
     }
+  };
+  window.togglePasswordVisibility = function() {
+    const passwordField = document.getElementById('adminPassword');
+    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordField.setAttribute('type', type);
   };
 </script>
 
