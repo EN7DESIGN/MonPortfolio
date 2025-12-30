@@ -8,33 +8,37 @@
   <link rel="stylesheet" href="/public/assets/css/admin.css">
 </head>
 <body>
-  <h1>🔐 Admin Portfolio</h1>
+  <section class="Wrapper">
+    <div class="Container">
+      <h1>🔐<br>Admin Portfolio</h1>
 
-  <!-- Écran de mot de passe -->
-  <div id="password-screen">
-    <div style="position: relative;">
-      <input type="password" id="adminPassword" placeholder="Mot de passe admin" style="padding-right: 40px;" />
-      <button type="button" onclick="togglePasswordVisibility()">👁️</button>
+      <!-- Écran de mot de passe -->
+      <div id="password-screen" class="Container-Box1">
+        <div class="Grp01">
+          <input type="password" id="adminPassword" placeholder="Mot de passe admin"/>
+          <button type="button" onclick="togglePasswordVisibility()">👁️</button>
+        </div>
+        <button onclick="checkPassword()">Accéder au formulaire</button>
+        <p id="password-error" style="color:red; display:none;">Mot de passe incorrect.</p>
+      </div>
+
+      <!-- Formulaire (caché au départ) -->
+      <div id="form-section" class="hidden">
+        <h2>➕ Ajouter un projet</h2>
+        <input id="title" placeholder="Titre du projet" />
+        <select id="category">
+          <option value="brand-identity">Brand identity</option>
+          <option value="ui-ux-design">UI/UX design</option>
+          <option value="visual-design">Visual design</option>
+          <option value="graphic-design">Graphic design</option>
+        </select>
+        <textarea id="description" placeholder="Description"></textarea>
+        <input type="file" id="images" multiple accept="image/*" />
+        <button onclick="submitProject()">Publier le projet</button>
+        <div id="status"></div>
+      </div>
     </div>
-    <button onclick="checkPassword()">Accéder au formulaire</button>
-    <p id="password-error" style="color:red; display:none;">Mot de passe incorrect.</p>
-  </div>
-
-  <!-- Formulaire (caché au départ) -->
-  <div id="form-section" class="hidden">
-    <h2>➕ Ajouter un projet</h2>
-    <input id="title" placeholder="Titre du projet" />
-    <select id="category">
-      <option value="brand-identity">Brand identity</option>
-      <option value="ui-ux-design">UI/UX design</option>
-      <option value="visual-design">Visual design</option>
-      <option value="graphic-design">Graphic design</option>
-    </select>
-    <textarea id="description" placeholder="Description"></textarea>
-    <input type="file" id="images" multiple accept="image/*" />
-    <button onclick="submitProject()">Publier le projet</button>
-    <div id="status"></div>
-  </div>
+  </section>
 
 <script>
   // 🔑 Change ce mot de passe

@@ -26,19 +26,77 @@ body {
   background-color: #FFFFFF;
 }
 
-input, select, textarea, button {
-  width: 100%;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-}
-
-button {
-  background: #514444;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
 .hidden {
   display: none;
+}
+
+.Wrapper {
+  width: 100%;
+  height: 100dvh;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Container {
+  width: 428px;
+  padding: 44px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 40px;
+  -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid #E6E6E6;
+  border-radius: 12px;
+}
+.Container h1 {
+  font-family: "Title";
+  font-weight: normal;
+  text-align: center;
+}
+
+.Container-Box1 {
+  width: 80%;
+}
+
+.Grp01 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: relative;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: #16171F;
+}
+.Grp01 input {
+  background: none;
+  border: none;
+}
+.Grp01 button {
+  width: 50px;
 }/*# sourceMappingURL=admin.css.map */
