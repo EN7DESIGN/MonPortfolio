@@ -10,7 +10,8 @@
         "project1767207607920",
         "project1767207933434",
         "project-step",
-        "project-projet-nitro"
+        "project-projet-nitro",
+        "project-test"
       ]
     },
     "ui-ux-design": {
@@ -93,6 +94,14 @@
       "description": "Projet-Nitro",
       "images": [
         "Frame 57.png"
+      ],
+      "category": "brand-identity"
+    },
+    "project-test": {
+      "title": "Test",
+      "description": "Test",
+      "images": [
+        "CategorieCard.png"
       ],
       "category": "brand-identity"
     }
