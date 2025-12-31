@@ -6,17 +6,20 @@
   <link rel="icon" href="/public/assets/favicon/Favicon.svg" type="image/x-icon">
   <link rel="stylesheet" href="/public/assets/css/system.css">
   <link rel="stylesheet" href="/public/assets/css/admin.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
   <section class="Wrapper">
     <div class="Container">
-      <h1>🔐<br>Admin Portfolio</h1>
+      <h1><span class="material-icons">lock_person</span><br>Admin Portfolio</h1>
 
       <!-- Écran de mot de passe -->
       <div id="password-screen" class="Container-Box1">
         <div class="Grp01">
           <input type="password" id="adminPassword" placeholder="Mot de passe admin"/>
-          <button type="button" onclick="togglePasswordVisibility()">👁️</button>
+          <button type="button" onclick="togglePasswordVisibility()">
+            <span class="material-icons">visibility</span>
+          </button>
         </div>
         <button onclick="checkPassword()">Accéder au formulaire</button>
         <p id="password-error" style="color:red; display:none;">Mot de passe incorrect.</p>

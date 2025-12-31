@@ -30,6 +30,13 @@ body {
   display: none;
 }
 
+input {
+  background: none;
+  border: none;
+  width: 100%;
+  color: #FFFFFF;
+}
+
 .Wrapper {
   width: 100%;
   height: 100dvh;
@@ -76,6 +83,9 @@ body {
   font-weight: normal;
   text-align: center;
 }
+.Container span {
+  font-size: 2rem;
+}
 
 .Container-Box1 {
   width: 80%;
@@ -93,10 +103,14 @@ body {
   border-radius: 6px;
   background-color: #16171F;
 }
-.Grp01 input {
-  background: none;
-  border: none;
-}
 .Grp01 button {
   width: 50px;
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.Grp01 button span {
+  font-size: 26px;
 }/*# sourceMappingURL=admin.css.map */
