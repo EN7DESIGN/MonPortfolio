@@ -4,7 +4,11 @@
       "title": "Brand identity",
       "background": "Texture-Brand.png",
       "projects": [
-        "project1766945343434"
+        "project1766945343434",
+        "project1767206524303",
+        "project1767206818013",
+        "project1767207607920",
+        "project1767207933434"
       ]
     },
     "ui-ux-design": {
@@ -41,6 +45,38 @@
         "Frame 1.png"
       ],
       "category": "ui-ux-design"
+    },
+    "project1767206524303": {
+      "title": "Projet-100",
+      "description": "Projet-100",
+      "images": [
+        "Frame 55.png"
+      ],
+      "category": "brand-identity"
+    },
+    "project1767206818013": {
+      "title": "projet-100",
+      "description": "projet100",
+      "images": [
+        "Frame 55.png"
+      ],
+      "category": "brand-identity"
+    },
+    "project1767207607920": {
+      "title": "Projet-101",
+      "description": "Projet-101",
+      "images": [
+        "Frame 56.png"
+      ],
+      "category": "brand-identity"
+    },
+    "project1767207933434": {
+      "title": "Projet-102",
+      "description": "Projet-102",
+      "images": [
+        "image 8.png"
+      ],
+      "category": "brand-identity"
     }
   }
 }
