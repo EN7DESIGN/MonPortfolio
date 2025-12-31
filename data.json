@@ -3,22 +3,12 @@
     "brand-identity": {
       "title": "Brand identity",
       "background": "Texture-Brand.png",
-      "projects": [
-        "project1766945343434",
-        "project1767206524303",
-        "project1767206818013",
-        "project1767207607920",
-        "project1767207933434",
-        "project-step",
-        "project-projet-nitro"
-      ]
+      "projects": []
     },
     "ui-ux-design": {
       "title": "UI/UX design",
       "background": "Texture-UIUX.png",
-      "projects": [
-        "project1766948949396"
-      ]
+      "projects": []
     },
     "visual-design": {
       "title": "Visual design",
@@ -32,69 +22,6 @@
     }
   },
   "projects": {
-    "project1766945343434": {
-      "title": "Projet07",
-      "description": "Projet 07",
-      "images": [
-        "Frame 2.png"
-      ],
-      "category": "brand-identity"
-    },
-    "project1766948949396": {
-      "title": "Projet 08",
-      "description": "Projet-08 pour UX UI Design",
-      "images": [
-        "Frame 1.png"
-      ],
-      "category": "ui-ux-design"
-    },
-    "project1767206524303": {
-      "title": "Projet-100",
-      "description": "Projet-100",
-      "images": [
-        "Frame 55.png"
-      ],
-      "category": "brand-identity"
-    },
-    "project1767206818013": {
-      "title": "projet-100",
-      "description": "projet100",
-      "images": [
-        "Frame 55.png"
-      ],
-      "category": "brand-identity"
-    },
-    "project1767207607920": {
-      "title": "Projet-101",
-      "description": "Projet-101",
-      "images": [
-        "Frame 56.png"
-      ],
-      "category": "brand-identity"
-    },
-    "project1767207933434": {
-      "title": "Projet-102",
-      "description": "Projet-102",
-      "images": [
-        "image 8.png"
-      ],
-      "category": "brand-identity"
-    },
-    "project-step": {
-      "title": "STEP",
-      "description": "STEP",
-      "images": [
-        "image 8.png"
-      ],
-      "category": "brand-identity"
-    },
-    "project-projet-nitro": {
-      "title": "Projet-Nitro",
-      "description": "Projet-Nitro",
-      "images": [
-        "Frame 57.png"
-      ],
-      "category": "brand-identity"
-    }
+    
   }
 }
