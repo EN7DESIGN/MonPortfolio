@@ -11,20 +11,26 @@
 <body>
   <section class="Wrapper">
     <div class="Container">
-      <h1><span class="material-icons">lock_person</span><br>Admin Portfolio</h1>
+      <div id="Box1">
+        <h1><span class="material-icons">lock_person</span><br>Admin Portfolio</h1>
+        <!-- Écran de mot de passe -->
+        <div id="password-screen" class="Container-Box1">
+          <div class="Grp01">
+            <input type="password" id="adminPassword" placeholder="Mot de passe admin"/>
+            <button type="button" onclick="togglePasswordVisibility()">
+              <span class="material-icons">visibility</span>
+            </button>
+          </div>
 
-      <!-- Écran de mot de passe -->
-      <div id="password-screen" class="Container-Box1">
-        <div class="Grp01">
-          <input type="password" id="adminPassword" placeholder="Mot de passe admin"/>
-          <button type="button" onclick="togglePasswordVisibility()">
-            <span class="material-icons">visibility</span>
+          <!-- <button onclick="checkPassword()">Accéder au formulaire</button> -->
+          <button onclick="checkPassword()" class="Button01 Primary Medium" role="button">
+            <img src="./public/assets/images/Icon-WhatsApp.svg" alt="">
+            Accéder au formulaire
           </button>
+          <p id="password-error" style="color:red; display:none;">Mot de passe incorrect.</p>
         </div>
-        <button onclick="checkPassword()">Accéder au formulaire</button>
-        <p id="password-error" style="color:red; display:none;">Mot de passe incorrect.</p>
       </div>
-
+      
       <!-- Formulaire (caché au départ) -->
       <div id="form-section" class="hidden">
         <h2>➕ Ajouter un projet</h2>
@@ -53,6 +59,7 @@
     if (input === ADMIN_PASSWORD) {
       document.getElementById('password-screen').classList.add('hidden');
       document.getElementById('form-section').classList.remove('hidden');
+      document.getElementById('Box1').classList.add('hidden');
     } else {
       document.getElementById('password-error').style.display = 'block';
     }

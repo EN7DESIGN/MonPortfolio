@@ -27,14 +27,30 @@ body {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 input {
   background: none;
   border: none;
   width: 100%;
-  color: #FFFFFF;
+  color: #16171F;
+  font-size: 1rem;
+}
+input::-webkit-input-placeholder {
+  color: rgba(22, 23, 31, 0.6);
+}
+input::-moz-placeholder {
+  color: rgba(22, 23, 31, 0.6);
+}
+input:-ms-input-placeholder {
+  color: rgba(22, 23, 31, 0.6);
+}
+input::-ms-input-placeholder {
+  color: rgba(22, 23, 31, 0.6);
+}
+input::placeholder {
+  color: rgba(22, 23, 31, 0.6);
 }
 
 .Wrapper {
@@ -54,11 +70,12 @@ input {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  background-color: #16171F;
 }
 
 .Container {
   width: 428px;
-  padding: 44px 0px;
+  padding: 94px 0px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -77,6 +94,7 @@ input {
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border: 2px solid #E6E6E6;
   border-radius: 12px;
+  background-color: #FFFFFF;
 }
 .Container h1 {
   font-family: "Title";
@@ -87,11 +105,37 @@ input {
   font-size: 2rem;
 }
 
-.Container-Box1 {
+#Box1 {
   width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
+.Container-Box1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 40px;
 }
 
 .Grp01 {
+  width: 320px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -99,15 +143,16 @@ input {
       -ms-flex-pack: justify;
           justify-content: space-between;
   position: relative;
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 6px;
-  background-color: #16171F;
+  border: 1px solid rgba(22, 23, 31, 0.2);
 }
 .Grp01 button {
   width: 50px;
+  margin-right: -18px;
   background: none;
   border: none;
-  color: #FFFFFF;
+  color: #16171F;
   cursor: pointer;
   font-size: 1rem;
 }
