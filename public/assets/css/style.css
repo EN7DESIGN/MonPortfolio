@@ -992,4 +992,41 @@ footer {
 }
 
 /* ------------------------ */
+/* Main------------------- */
+.Cat-Section {
+  width: 100%;
+  overflow: clip;
+  padding-bottom: 200px;
+  background-image: url(/public/assets/images/Texture2.svg);
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.Cat-TitleBloc {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 8px;
+  padding-top: clamp(60px, 53.3333px + 1.8519vw, 80px);
+  padding-bottom: clamp(60px, 53.3333px + 1.8519vw, 80px);
+}
+
+.Cat-TitleBloc p {
+  font-family: "Body";
+  font-size: clamp(0.68rem, 0.5733rem + 0.4741vw, 1rem);
+  text-align: center;
+}
+
+/* ---------------------- */
 /* --------------------------------- *//*# sourceMappingURL=style.css.map */
