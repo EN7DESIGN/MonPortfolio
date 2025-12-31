@@ -6,7 +6,8 @@
       "projects": [
         "project1766945343434",
         "project1767206524303",
-        "project1767206818013"
+        "project1767206818013",
+        "project1767207607920"
       ]
     },
     "ui-ux-design": {
@@ -57,6 +58,14 @@
       "description": "projet100",
       "images": [
         "Frame 55.png"
+      ],
+      "category": "brand-identity"
+    },
+    "project1767207607920": {
+      "title": "Projet-101",
+      "description": "Projet-101",
+      "images": [
+        "Frame 56.png"
       ],
       "category": "brand-identity"
     }
