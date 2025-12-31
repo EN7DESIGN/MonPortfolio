@@ -6,34 +6,33 @@
   <link rel="icon" href="/public/assets/favicon/Favicon.svg" type="image/x-icon">
   <link rel="stylesheet" href="/public/assets/css/system.css">
   <link rel="stylesheet" href="/public/assets/css/admin.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
   <section class="Wrapper">
     <div class="Container">
+      <!-- Login form -->
       <div id="Box1">
-        <h1><span class="material-icons">lock_person</span><br>Admin Portfolio</h1>
+        <h1>🗝️<br>Admin Portfolio</h1>
         <!-- Écran de mot de passe -->
         <div id="password-screen" class="Container-Box1">
           <div class="Grp01">
             <input type="password" id="adminPassword" placeholder="Mot de passe admin"/>
             <button type="button" onclick="togglePasswordVisibility()">
-              <span class="material-icons">visibility</span>
+              ⏿
             </button>
           </div>
 
           <!-- <button onclick="checkPassword()">Accéder au formulaire</button> -->
           <button onclick="checkPassword()" class="Button01 Primary Medium" role="button">
-            <img src="./public/assets/images/Icon-WhatsApp.svg" alt="">
             Accéder au formulaire
           </button>
           <p id="password-error" style="color:red; display:none;">Mot de passe incorrect.</p>
         </div>
       </div>
-      
+
       <!-- Formulaire (caché au départ) -->
       <div id="form-section" class="hidden">
-        <h2>➕ Ajouter un projet</h2>
+        <h2>➕<br>Ajouter un projet</h2>
         <input id="title" placeholder="Titre du projet" />
         <select id="category">
           <option value="brand-identity">Brand identity</option>
@@ -43,8 +42,11 @@
         </select>
         <textarea id="description" placeholder="Description"></textarea>
         <input type="file" id="images" multiple accept="image/*" />
-        <button onclick="submitProject()">Publier le projet</button>
-        <div id="status"></div>
+        <!-- <button onclick="submitProject()">Publier le projet</button> -->
+        <button onclick="submitProject()" class="Button01 Primary Medium" role="button">
+            Publier le projet
+        </button>
+        <div id="status" style="font-size: 14px;"></div>
       </div>
     </div>
   </section>
@@ -95,13 +97,13 @@
       });
 
       status.innerHTML = `
-        ✅ Projet ajouté avec succès !<br>
-        ID : <code>${newId}</code><br><br>
-        👉 <strong>Prochaine étape :</strong><br>
-        1. Mets les images suivantes dans ton dossier :<br>
-        <code>/public/assets/images/</code><br>
-        2. Envoie-les sur GitHub.<br>
-        3. Actualise ton site → le projet apparaîtra !
+        <h3>✅ Projet ajouté avec succès !</h3>
+        <p>ID : <code>${newId}</code></p>
+        <p>👉 <strong>Prochaine étape :</strong></p>
+        <p>1. Mets les images suivantes dans ton dossier :</p>
+        <p><code>/public/assets/images/</code></p>
+        <p>2. Envoie-les sur GitHub.</p>
+        <p>3. Actualise ton site → le projet apparaîtra !</p>
       `;
       status.style.whiteSpace = 'pre-wrap';
 
