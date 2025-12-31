@@ -1,24 +1,24 @@
 {
   "categories": {
     "brand-identity": {
-      "title": "Brand identity",
+      "title": "Brand<br>identity",
       "background": "Texture-Brand.png",
       "projects": [
         "project-test"
       ]
     },
     "ui-ux-design": {
-      "title": "UI/UX design",
+      "title": "UI/UX<br>design",
       "background": "Texture-UIUX.png",
       "projects": []
     },
     "visual-design": {
-      "title": "Visual design",
+      "title": "Visual<br>design",
       "background": "Texture-Visual.png",
       "projects": []
     },
     "graphic-design": {
-      "title": "Graphic design",
+      "title": "Graphic<br>design",
       "background": "Texture-Graphic.png",
       "projects": []
     }

@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const category = categories[categoryId];
 
   // Mise à jour du header
-  document.getElementById('category-title').textContent = category.title;
+  document.getElementById('category-title').innerHTML = category.title;
   document.getElementById('category-bg').style.backgroundImage = `url(./public/assets/images/${category.background})`;
 
   // Filtrer les projets de cette catégorie
