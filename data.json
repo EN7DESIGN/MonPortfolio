@@ -4,7 +4,8 @@
       "title": "Brand identity",
       "background": "Texture-Brand.png",
       "projects": [
-        "project1766945343434"
+        "project1766945343434",
+        "project1767206524303"
       ]
     },
     "ui-ux-design": {
@@ -41,6 +42,14 @@
         "Frame 1.png"
       ],
       "category": "ui-ux-design"
+    },
+    "project1767206524303": {
+      "title": "Projet-100",
+      "description": "Projet-100",
+      "images": [
+        "Frame 55.png"
+      ],
+      "category": "brand-identity"
     }
   }
 }
