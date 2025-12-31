@@ -8,7 +8,8 @@
         "project1767206524303",
         "project1767206818013",
         "project1767207607920",
-        "project1767207933434"
+        "project1767207933434",
+        "project-step"
       ]
     },
     "ui-ux-design": {
@@ -73,6 +74,14 @@
     "project1767207933434": {
       "title": "Projet-102",
       "description": "Projet-102",
+      "images": [
+        "image 8.png"
+      ],
+      "category": "brand-identity"
+    },
+    "project-step": {
+      "title": "STEP",
+      "description": "STEP",
       "images": [
         "image 8.png"
       ],
