@@ -998,11 +998,16 @@ footer {
 .Cat-Section {
   width: 100%;
   overflow: clip;
-  padding-bottom: 200px;
+  padding-bottom: 100px;
+  padding-top: 32px;
   background-image: url(/public/assets/images/Texture2.svg);
   background-position: top;
   background-repeat: no-repeat;
   background-size: 100%;
+}
+
+.Cat-Section .isbottom {
+  margin: 0 auto;
 }
 
 .Cat-TitleBloc {
@@ -1020,7 +1025,7 @@ footer {
       -ms-flex-align: center;
           align-items: center;
   gap: 8px;
-  padding-top: clamp(60px, 53.3333px + 1.8519vw, 80px);
+  padding: clamp(20px, 0px + 5.5556vw, 80px);
   padding-bottom: clamp(60px, 53.3333px + 1.8519vw, 80px);
 }
 
@@ -1059,8 +1064,8 @@ footer {
       -ms-flex-pack: end;
           justify-content: flex-end;
   gap: 12px;
-  width: clamp(264px, 232px + 8.8889vw, 360px);
-  height: clamp(176px, 154.6667px + 5.9259vw, 240px);
+  width: clamp(292px, 269.3333px + 6.2963vw, 360px);
+  height: clamp(198px, 184px + 3.8889vw, 240px);
   padding: 28px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -1068,8 +1073,6 @@ footer {
   background-size: cover;
   border-radius: 6px;
   cursor: pointer;
-  -webkit-transform: scale(1);
-          transform: scale(1);
   -webkit-transition: -webkit-transform 0.3s ease-in-out;
   transition: -webkit-transform 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out;
@@ -1086,13 +1089,13 @@ footer {
 .project-card h3 {
   font-family: "Title";
   font-weight: normal;
-  font-size: clamp(1.125rem, 0.9583rem + 0.7407vw, 1.625rem);
+  font-size: clamp(1.6rem, 1.5917rem + 0.037vw, 1.625rem);
   line-height: 78%;
   color: #FFFFFF;
 }
 
 .project-card p {
-  font-size: clamp(0.375rem, 0.2917rem + 0.3704vw, 0.625rem);
+  font-size: clamp(0.5rem, 0.4583rem + 0.1852vw, 0.625rem);
   color: #FFFFFF;
 }
 
@@ -1117,7 +1120,7 @@ footer {
 /* ---------------------- */
 /* --------------------------------- */
 /* Projet ------------------------- */
-/* Le header ----------------*/
+/* Le header -----------*/
 .Projet-Header {
   width: 90%;
   max-width: 1238px;
@@ -1134,6 +1137,9 @@ footer {
 }
 
 .Btn-Back {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1141,10 +1147,21 @@ footer {
       -ms-flex-align: center;
           align-items: center;
   gap: 6px;
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+  cursor: pointer;
 }
 .Btn-Back button {
   border: none;
   background: none;
+}
+.Btn-Back:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 /* Title groupe */
@@ -1155,12 +1172,28 @@ footer {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 44px clamp(20px, 12px + 2.2222vw, 44px);
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  padding: clamp(28px, 22.6667px + 1.4815vw, 44px);
   border-radius: 8px;
   background-color: #16171F;
   color: #FFFFFF;
 }
+@media (max-width: 630px) {
+  .Projet-TitleGrp {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    gap: 20px;
+  }
+}
 
+/* Left ------------------------ */
 .Projet-TitleGrp .Left {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1178,11 +1211,61 @@ footer {
   line-height: 90%;
 }
 .Projet-TitleGrp .Left #project-description {
-  font-family: "Body";
+  width: 192px;
   font-weight: 200;
-  font-size: clamp(1rem, 0.9167rem + 0.3704vw, 1.25rem);
+  font-size: clamp(0.75rem, 0.5833rem + 0.7407vw, 1.25rem);
+}
+@media (max-width: 630px) {
+  .Projet-TitleGrp .Left #project-description {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+  }
+}
+@media (max-width: 630px) {
+  .Projet-TitleGrp .Left {
+    text-align: center;
+    gap: 10px;
+  }
 }
 
+/* ----------------------------- */
+/* Right ---------------------- */
+.Projet-TitleGrp .Right {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+.Projet-TitleGrp .Right p {
+  text-align: right;
+  font-size: clamp(0.625rem, 0.5rem + 0.5556vw, 1rem);
+  font-weight: 200;
+}
+@media (max-width: 630px) {
+  .Projet-TitleGrp .Right p {
+    text-align: left;
+  }
+}
+.Projet-TitleGrp .Right img {
+  width: clamp(34px, 21px + 3.6111vw, 73px);
+}
+@media (max-width: 630px) {
+  .Projet-TitleGrp .Right {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+  }
+}
+
+/* ---------------------------- */
 /* ---------------------*/
 /* Image du projet */
 #project-images {
@@ -1203,7 +1286,7 @@ footer {
   width: max-content;
   margin: 0 auto;
   margin-top: 20px;
-  margin-bottom: 100px;
+  margin-bottom: 84px;
   cursor: pointer;
 }
 .isbottom img {

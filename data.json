@@ -73,10 +73,10 @@
     },
     "project-jagoboutique": {
       "title": "JAGO<br>Boutique",
-      "description": "Un site e-commerce<br>fait sur mesure",
+      "description": "Un site e-commerce fait sur mesure",
       "images": [
         "Minia-Jago.png",
-        "Jago.png"
+        "Jago.webp"
       ],
       "category": "ui-ux-design"
     }
