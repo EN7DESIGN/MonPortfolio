@@ -9,3 +9,10 @@ document.querySelectorAll('.BtnBurger').forEach(btn => {
         }
     });
 });
+
+document.querySelectorAll('.Menu-Mobile .ListMenu a').forEach(link => {
+    link.addEventListener('click', () => {
+        document.querySelector('.Menu-Mobile').style.left = '360%';
+        document.querySelectorAll('.BtnBurger').forEach(btn => btn.classList.remove('active'));
+    });
+});
