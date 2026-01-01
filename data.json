@@ -14,7 +14,9 @@
     "ui-ux-design": {
       "title": "UI/UX<br>design",
       "background": "Texture-UIUX.png",
-      "projects": []
+      "projects": [
+        "project-jagobrboutique"
+      ]
     },
     "visual-design": {
       "title": "Visual<br>design",
@@ -27,7 +29,6 @@
       "projects": []
     }
   },
-  
   "projects": {
     "project-test": {
       "title": "STEP<br>entreprise",
@@ -68,6 +69,15 @@
         "CategorieCard.png"
       ],
       "category": "brand-identity"
+    },
+    "project-jagobrboutique": {
+      "title": "JAGO<br>Boutique",
+      "description": "Un site e-commerce<br>fait sur mesure",
+      "images": [
+        "Minia-Jago.png",
+        "Jago.png"
+      ],
+      "category": "ui-ux-design"
     }
   }
 }
