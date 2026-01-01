@@ -31,6 +31,8 @@ html {
 body {
   font-family: "Body", sans-serif;
   background-color: #FFFFFF;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 /* Loader overlay */
@@ -1113,4 +1115,73 @@ footer {
 }
 
 /* ---------------------- */
-/* --------------------------------- *//*# sourceMappingURL=style.css.map */
+/* --------------------------------- */
+/* Projet ------------------------- */
+.Projet-Header {
+  width: 90%;
+  max-width: 1238px;
+  margin: 0 auto;
+  padding: 20px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 20px;
+}
+
+.Btn-Back {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 6px;
+}
+.Btn-Back button {
+  border: none;
+  background: none;
+}
+
+.Projet-TitleGrp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 32px 44px;
+  border-radius: 8px;
+  background-color: #16171F;
+  color: #FFFFFF;
+}
+
+#project-images {
+  width: 90%;
+  max-width: 1238px;
+  margin: 0 auto;
+  overflow: clip;
+  border-radius: 8px;
+}
+#project-images img {
+  width: 100%;
+}
+
+/* Bouton du bas */
+.isbottom {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 100px;
+  cursor: pointer;
+}
+.isbottom img {
+  width: 36px;
+}
+
+/* ------------------------------- *//*# sourceMappingURL=style.css.map */
