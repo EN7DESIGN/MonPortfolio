@@ -4,7 +4,11 @@
       "title": "Brand<br>identity",
       "background": "Texture-Brand.png",
       "projects": [
-        "project-test"
+        "project-test",
+        "project-test2",
+        "project-test3",
+        "project-test4",
+        "project-test5"
       ]
     },
     "ui-ux-design": {
@@ -25,8 +29,40 @@
   },
   "projects": {
     "project-test": {
-      "title": "Test",
-      "description": "Test",
+      "title": "STEP<br>entreprise",
+      "description": "Société du Tourisme,<br>Environnement et Patrimoine.",
+      "images": [
+        "Bg-Projet-STEP.png"
+      ],
+      "category": "brand-identity"
+    },
+    "project-test2": {
+      "title": "Test2",
+      "description": "Test2",
+      "images": [
+        "CategorieCard.png"
+      ],
+      "category": "brand-identity"
+    },
+    "project-test3": {
+      "title": "Test3",
+      "description": "Test3",
+      "images": [
+        "CategorieCard.png"
+      ],
+      "category": "brand-identity"
+    },
+    "project-test4": {
+      "title": "Test4",
+      "description": "Test4",
+      "images": [
+        "CategorieCard.png"
+      ],
+      "category": "brand-identity"
+    },
+    "project-test5": {
+      "title": "Test5",
+      "description": "Test5",
       "images": [
         "CategorieCard.png"
       ],

@@ -36,9 +36,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   Object.entries(categoryProjects).forEach(([projectId, project]) => {
     const projectCard = document.createElement('div');
     projectCard.className = 'project-card';
+    // Set the background image dynamically based on the project's first image
+    if (project.images && project.images.length > 0) {
+      projectCard.style.background = `url('./public/assets/images/${project.images[0]}')`;
+    }
     projectCard.innerHTML = `
-      <h3>${project.title}</h3>
-      <img src="./public/assets/images/${project.images[0]}" alt="${project.title}" />
+        <h3>${project.title}</h3>
+        <p>${project.description}</p>
+        <button>
+          Voir le projet
+          <img src="./public/assets/images/Icon-Line 2.svg" alt="">
+        </button>
     `;
     projectCard.addEventListener('click', () => {
       window.location.href = `projet.html?project=${projectId}`;
