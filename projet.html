@@ -11,22 +11,43 @@
 </head>
 
 <body>
-    <!-- Loader -->
-        <div id="loader" class="loader-container">
-            <div class="spinner"></div>
-        </div>
-    <!-- ------ -->
-  <header>
-    <button onclick="history.back()">← Retour</button>
-    <h1 id="project-title"></h1>
+  <!-- Loader -->
+      <div id="loader" class="loader-container">
+          <div class="spinner"></div>
+      </div>
+  <!-- ------ -->
+
+  <!-- Button Retour -->
+    <div class="Btn-Back">
+      <img src="./public/assets/images/Btn-Back.svg" alt="Btn-Back">
+      <button onclick="history.back()">Back</button>
+    </div>
+  <!-- ------------- -->
+
+  <header class="Page-TitleGrp">
+    <!-- Left -->
+      <div class="Left">
+        <h1 id="project-title"></h1>
+        <p id="project-description"></p>
+      </div>
+    <!-- ---- -->
+
+    <!-- Right -->
+      <div class="Right">
+        <p>Create by @EN7DESIGN<br>Elie Sept Ngiene</p>
+        <img src="./public/assets/images/Profil 1.png" alt="Profil">
+      </div>
+    <!--  -->
   </header>
+  
+  <!-- image projet ------------------>
+    <div id="project-images"></div>
+  <!-- ------------------------------>
 
-  <div id="project-images"></div>
-  <p id="project-description"></p>
-
-
-  <script src="./scripts/data.js"></script>
-  <script src="./scripts/utils.js"></script>
-  <script type="module" src="./scripts/projet.js"></script>
+  <!-- Scripts -->
+    <script src="./scripts/data.js"></script>
+    <script src="./scripts/utils.js"></script>
+    <script type="module" src="./scripts/projet.js"></script>
+  <!-- ------ -->
 </body>
 </html>
