@@ -1117,6 +1117,7 @@ footer {
 /* ---------------------- */
 /* --------------------------------- */
 /* Projet ------------------------- */
+/* Le header ----------------*/
 .Projet-Header {
   width: 90%;
   max-width: 1238px;
@@ -1146,6 +1147,7 @@ footer {
   background: none;
 }
 
+/* Title groupe */
 .Projet-TitleGrp {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1153,12 +1155,36 @@ footer {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 32px 44px;
+  padding: 44px clamp(20px, 12px + 2.2222vw, 44px);
   border-radius: 8px;
   background-color: #16171F;
   color: #FFFFFF;
 }
 
+.Projet-TitleGrp .Left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 22px;
+}
+.Projet-TitleGrp .Left h3 {
+  font-family: "Title";
+  font-weight: normal;
+  font-size: clamp(2rem, 1.6667rem + 1.4815vw, 3rem);
+  line-height: 90%;
+}
+.Projet-TitleGrp .Left #project-description {
+  font-family: "Body";
+  font-weight: 200;
+  font-size: clamp(1rem, 0.9167rem + 0.3704vw, 1.25rem);
+}
+
+/* ---------------------*/
+/* Image du projet */
 #project-images {
   width: 90%;
   max-width: 1238px;
