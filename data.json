@@ -8,14 +8,15 @@
         "project-test2",
         "project-test3",
         "project-test4",
-        "project-test5"
+        "project-test5",
+        "project-jagoboutique"
       ]
     },
     "ui-ux-design": {
       "title": "UI/UX<br>design",
       "background": "Texture-UIUX.png",
       "projects": [
-        "project-jagobrboutique"
+        "project-jagoboutique"
       ]
     },
     "visual-design": {
@@ -70,7 +71,7 @@
       ],
       "category": "brand-identity"
     },
-    "project-jagobrboutique": {
+    "project-jagoboutique": {
       "title": "JAGO<br>Boutique",
       "description": "Un site e-commerce<br>fait sur mesure",
       "images": [
