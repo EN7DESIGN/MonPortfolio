@@ -13,14 +13,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-  document.getElementById('project-title').textContent = project.title;
-  document.getElementById('project-description').textContent = project.description;
+  document.getElementById('project-title').innerHTML = project.title;
+  document.getElementById('project-description').innerHTML = project.description;
 
   const imagesContainer = document.getElementById('project-images');
   imagesContainer.innerHTML = '';
-  project.images.forEach(imgSrc => {
+  const imagesToDisplay = (project.images && project.images.length > 1) 
+    ? project.images.slice(1) 
+    : (project.images || []);
+
+  imagesToDisplay.forEach(imgSrc => {
     const img = document.createElement('img');
-    img.src = imgSrc;
+    img.src = `./public/assets/images/${imgSrc}`;
     img.alt = project.title;
     imagesContainer.appendChild(img);
   });

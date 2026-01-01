@@ -41,7 +41,17 @@
           <option value="graphic-design">Graphic design</option>
         </select>
         <textarea id="description" placeholder="Description"></textarea>
-        <input type="file" id="images" multiple accept="image/*" />
+        
+        <div style="margin-top: 1rem; margin-bottom: 1rem;">
+          <label for="thumbnail" style="display:block; margin-bottom:0.5rem; font-weight:500;">🖼️ Miniature (Liste des projets)</label>
+          <input type="file" id="thumbnail" accept="image/*" />
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label for="projectImage" style="display:block; margin-bottom:0.5rem; font-weight:500;">📸 Image du projet (Détail)</label>
+          <input type="file" id="projectImage" accept="image/*" />
+        </div>
+
         <!-- <button onclick="submitProject()">Publier le projet</button> -->
         <button onclick="submitProject()" class="Button01 Primary Medium" role="button">
             Publier le projet
@@ -76,14 +86,21 @@
       const title = document.getElementById('title').value;
       const category = document.getElementById('category').value;
       const description = document.getElementById('description').value;
-      const files = document.getElementById('images').files;
+      
+      const thumbnailInput = document.getElementById('thumbnail');
+      const projectImageInput = document.getElementById('projectImage');
+      
+      const thumbnailFile = thumbnailInput.files[0];
+      const projectImageFile = projectImageInput.files[0];
 
-      if (!title || files.length === 0) {
-        throw new Error("Titre et au moins une image requis.");
+      // Validation
+      if (!title || !thumbnailFile || !projectImageFile) {
+        throw new Error("Le titre, la miniature et l'image du projet sont requis.");
       }
 
       // 🔁 On ne peut pas uploader les images → on enregistre juste les noms
-      const imageFilenames = Array.from(files).map(f => f.name);
+      // Convention : index 0 = Miniature, index 1 = Image du projet
+      const imageFilenames = [thumbnailFile.name, projectImageFile.name];
 
       // ⚙️ Importe la fonction de mise à jour
       const { addProjectToData } = await import('./update-data.js');
