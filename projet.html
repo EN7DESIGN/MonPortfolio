@@ -16,7 +16,45 @@
           <div class="spinner"></div>
       </div>
   <!-- ------ -->
+  <!-- Navigation -->
+      <div class="NavWrapper">
+          <!-- List menu mobile -->
+              <div class="Menu-Mobile">
+                  <div class="ListMenu">
+                      <a href="#Folio">Mon portfolio</a>
+                      <a href="#">A-propos de moi</a>
+                      <a href="#Footer">Contact</a>
+                  </div>
+                  <img class="MenuIcon" src="./public/assets/images/Icon.svg" alt="Icon en7design">
+              </div>
+          <!---------------------->
 
+          <!-- Navbar Desktop -->
+              <nav class="Navbar">
+                  <div class="Navbar-Container">
+                      <a href="./index.html">
+                          <img class="Logo" src="./public/assets/images/Logo.svg" alt="Logo EN7DESIGN" loading="eager">
+                      </a>
+                      <!-- Menu dekstop -->
+                      <ul class="Menu-Desktop">
+                          <li><a href="#Folio">Mon portfolio</a></li>
+                          <li><a href="#">A-propos de moi</a></li>
+                          <li><a href="#Footer">Contact</a></li>
+                      </ul>
+
+                      <!-- Btn Burger -->
+                      <button class="BtnBurger">
+                          <svg viewBox="0 0 64 48">
+                              <path d="M19,15 L45,15 C70,15 58,-2 49.0177126,7 L19,37"></path>
+                              <path d="M19,24 L45,24 C61.2371586,24 57,49 41,33 L32,24"></path>
+                              <path d="M45,33 L19,33 C-8,33 6,-2 22,14 L45,37"></path>
+                          </svg>
+                      </button>
+                  </div>
+              </nav>
+          <!-- -------------- -->
+      </div>
+  <!-- ---------- -->
   
   <header class="Projet-Header">
     <!-- Button Retour -->
@@ -54,7 +92,7 @@
   <!-- ------------- -->
 
   <!-- le footer -->
-    <footer>
+    <footer id="Footer">
         <div class="Footer_Title">
             <img src="./public/assets/images/Footer_Logo.svg" alt="Logo en7design" class="Footer_Logo">
             <p>Ensemble, mettons au monde vos rêves !</p>
@@ -83,6 +121,10 @@
   <!-- --------- -->
 
   <!-- Scripts -->
+    <script src="./scripts/BtnBurger.js"></script>
+    <script src="./scripts/BtnTape.js"></script>
+    <script src="./scripts/scroll.js"></script>
+    
     <script src="./scripts/data.js"></script>
     <script src="./scripts/utils.js"></script>
     <script type="module" src="./scripts/projet.js"></script>

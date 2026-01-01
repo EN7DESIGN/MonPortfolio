@@ -1125,7 +1125,8 @@ footer {
   width: 90%;
   max-width: 1238px;
   margin: 0 auto;
-  padding: 20px 0px;
+  padding-top: clamp(80px, 73.3333px + 1.8519vw, 100px);
+  padding-bottom: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
