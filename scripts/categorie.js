@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     projectCard.className = 'project-card';
     // Set the background image dynamically based on the project's first image
     if (project.images && project.images.length > 0) {
-      projectCard.style.background = `url('./public/assets/images/${project.images[0]}')`;
+      projectCard.style.backgroundImage = `url('./public/assets/images/${project.images[0]}')`;
     }
     projectCard.innerHTML = `
         <h3>${project.title}</h3>
