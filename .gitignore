@@ -19,3 +19,5 @@ scss/
 # Admin Folder
 admin/
 admin/update-data.js
+
+.editorconfig
