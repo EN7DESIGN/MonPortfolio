@@ -86,8 +86,8 @@
       "title": "Test<br>Cloudinary",
       "description": "Un projet test d'upload d'image dans Cloudinary",
       "images": [
-        "https://res.cloudinary.com/dwodyaldj/image/upload/v1767356259/glur3rd1sqtw3wnkybne.png",
-        "https://res.cloudinary.com/dwodyaldj/image/upload/v1767356261/tblv5ntksu5wbzkftou2.webp"
+        "https://res.cloudinary.com/en7design/image/upload/v1767356259/glur3rd1sqtw3wnkybne.png",
+        "https://res.cloudinary.com/en7design/image/upload/v1767356261/tblv5ntksu5wbzkftou2.webp"
       ],
       "category": "graphic-design"
     }
