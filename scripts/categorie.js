@@ -1,4 +1,4 @@
-import { loadData } from './load-data.js';
+import { loadData, getImageUrl } from './load-data.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Mise à jour du header
   document.getElementById('category-title').innerHTML = category.title;
-  document.getElementById('category-bg').style.backgroundImage = `url(./public/assets/images/${category.background})`;
+  document.getElementById('category-bg').style.backgroundImage = `url(${getImageUrl(category.background)})`;
 
   // Filtrer les projets de cette catégorie
   const categoryProjects = {};
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     projectCard.className = 'project-card';
     // Set the background image dynamically based on the project's first image
     if (project.images && project.images.length > 0) {
-      projectCard.style.backgroundImage = `url('./public/assets/images/${project.images[0]}')`;
+      projectCard.style.backgroundImage = `url('${getImageUrl(project.images[0])}')`;
     }
     projectCard.innerHTML = `
         <h3>${project.title}</h3>

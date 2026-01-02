@@ -1,4 +1,4 @@
-import { loadData } from './load-data.js';
+import { loadData, getImageUrl } from './load-data.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   imagesToDisplay.forEach(imgSrc => {
     const img = document.createElement('img');
-    img.src = `./public/assets/images/${imgSrc}`;
+    img.src = getImageUrl(imgSrc);
     img.alt = project.title;
     imagesContainer.appendChild(img);
   });

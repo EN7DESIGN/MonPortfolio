@@ -64,6 +64,8 @@
 <script>
   // 🔑 Change ce mot de passe
   const ADMIN_PASSWORD = "login";
+  const CLOUD_NAME = "dwodyaldj"; 
+  const UPLOAD_PRESET = "MonFolio";
 
   // Fonction accessible globalement (nécessaire pour onclick)
   window.checkPassword = function() {
@@ -76,6 +78,28 @@
       document.getElementById('password-error').style.display = 'block';
     }
   };
+
+  // Fonction pour uploader une image sur Cloudinary
+  async function uploadToCloudinary(file) {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', UPLOAD_PRESET);
+
+    const url = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
+
+    const response = await fetch(url, {
+      method: 'POST',
+      body: formData
+    });
+
+    if (!response.ok) {
+        const err = await response.json();
+        throw new Error(`Erreur upload Cloudinary: ${err.error.message}`);
+    }
+
+    const data = await response.json();
+    return data.secure_url;
+  }
 
   // Fonction pour soumettre le projet
   window.submitProject = async function() {
@@ -98,9 +122,19 @@
         throw new Error("Le titre, la miniature et l'image du projet sont requis.");
       }
 
-      // 🔁 On ne peut pas uploader les images → on enregistre juste les noms
+      status.textContent = "Upload des images en cours...";
+
+      // Upload des images vers Cloudinary
+      const [thumbnailUrl, projectImageUrl] = await Promise.all([
+        uploadToCloudinary(thumbnailFile),
+        uploadToCloudinary(projectImageFile)
+      ]);
+
+      status.textContent = "Mise à jour de GitHub...";
+
+      // 🔁 On stocke les URL complètes de Cloudinary
       // Convention : index 0 = Miniature, index 1 = Image du projet
-      const imageFilenames = [thumbnailFile.name, projectImageFile.name];
+      const imagesList = [thumbnailUrl, projectImageUrl];
 
       // ⚙️ Importe la fonction de mise à jour
       const { addProjectToData } = await import('./update-data.js');
@@ -110,19 +144,15 @@
         title,
         description,
         category,
-        images: imageFilenames
+        images: imagesList
       });
 
       status.innerHTML = `
         <h3>✅ Projet ajouté avec succès !</h3>
         <p>ID : <code>${newId}</code></p>
-        <p>👉 <strong>Prochaine étape :</strong></p>
-        <p>1. Mets les images suivantes dans ton dossier :</p>
-        <p><code>/public/assets/images/</code></p>
-        <p>2. Envoie-les sur GitHub.</p>
-        <p>3. Actualise ton site → le projet apparaîtra !</p>
+        <p>Les images ont été hébergées sur Cloudinary.</p>
+        <p>Actualise ton site dans quelques minutes (le temps que GitHub Pages se mette à jour).</p>
       `;
-      status.style.whiteSpace = 'pre-wrap';
 
     } catch (error) {
       console.error(error);

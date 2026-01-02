@@ -14,3 +14,12 @@ export async function loadData() {
     return { categories: {}, projects: {} };
   }
 }
+
+// Fonction utilitaire pour obtenir l'URL d'une image
+export function getImageUrl(path) {
+  if (!path) return '';
+  if (path.startsWith('http')) {
+    return path;
+  }
+  return `./public/assets/images/${path}`;
+}
