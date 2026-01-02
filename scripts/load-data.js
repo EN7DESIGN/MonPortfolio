@@ -19,6 +19,10 @@ export async function loadData() {
 export function getImageUrl(path) {
   if (!path) return '';
   if (path.startsWith('http')) {
+    // Si c'est une URL Cloudinary et qu'elle ne contient pas déjà de transformations (on insert après /upload/)
+    if (path.includes('res.cloudinary.com') && !path.includes('/q_auto,f_auto/')) {
+      return path.replace('/upload/', '/upload/q_auto,f_auto/');
+    }
     return path;
   }
   return `./public/assets/images/${path}`;
