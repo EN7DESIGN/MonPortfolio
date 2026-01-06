@@ -26,11 +26,10 @@
   "projects": {
     "project-step-entreprise": {
       "title": "Step<br>entreprise",
-      "description": "Société du Tourisme,<br>\nEnvironnement et Patrimoine.",
+      "description": "SociÃ©tÃ© du Tourisme,<br>Environnement et Patrimoine.",
       "images": [
         "https://res.cloudinary.com/en7design/image/upload/v1767717794/vfxjyocww1i6dewr6ubd.png",
-        "https://res.cloudinary.com/en7design/image/upload/v1767717796/mgiqurzbtitb5b96dtxd.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1767717796/n1q84mmsl9ft2dkny3hr.webp"
+        "https://res.cloudinary.com/en7design/image/upload/w_1200,h_6000,c_limit,q_auto,f_auto/v1767717796/mgiqurzbtitb5b96dtxd.webp"
       ],
       "category": "brand-identity"
     }

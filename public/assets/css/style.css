@@ -1050,6 +1050,7 @@ footer {
 }
 
 .project-card {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1080,6 +1081,7 @@ footer {
   -webkit-transform-origin: center center;
           transform-origin: center center;
   overflow: clip;
+  /* keep position relative for potential overlays */
 }
 .project-card:hover {
   -webkit-transform: scale(1.04);
@@ -1273,7 +1275,6 @@ footer {
   width: 90%;
   max-width: 1238px;
   margin: 0 auto;
-  overflow: clip;
   border-radius: 8px;
 }
 #project-images img {

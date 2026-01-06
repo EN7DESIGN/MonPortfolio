@@ -91,3 +91,59 @@ export async function addProjectToData(newProjectData) {
 
   return newId;
 }
+
+// Fonction pour supprimer un projet par son ID
+export async function deleteProject(projectId) {
+  const apiUrl = `https://api.github.com/repos/${USERNAME}/${REPO}/contents/data.json`;
+
+  // 1. Récupérer le fichier actuel
+  const response = await fetch(apiUrl, {
+    headers: { Authorization: `token ${GITHUB_TOKEN}` }
+  });
+
+  if (!response.ok) {
+    throw new Error('Erreur lors de la lecture de data.json');
+  }
+
+  const fileData = await response.json();
+  const currentContent = JSON.parse(atob(fileData.content));
+
+  // 2. Vérifier que le projet existe
+  if (!currentContent.projects[projectId]) {
+    throw new Error(`Le projet ${projectId} n'existe pas.`);
+  }
+
+  // 3. Supprimer le projet
+  delete currentContent.projects[projectId];
+
+  // 4. Retirer l'ID des catégories
+  Object.keys(currentContent.categories).forEach(catId => {
+    const cat = currentContent.categories[catId];
+    if (Array.isArray(cat.projects)) {
+      cat.projects = cat.projects.filter(id => id !== projectId);
+    }
+  });
+
+  // 5. Encoder le nouveau contenu en base64
+  const updatedContent = btoa(JSON.stringify(currentContent, null, 2));
+
+  // 6. Envoyer la mise à jour
+  const updateResponse = await fetch(apiUrl, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `token ${GITHUB_TOKEN}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      message: `Suppression du projet : ${projectId}`,
+      content: updatedContent,
+      sha: fileData.sha
+    })
+  });
+
+  if (!updateResponse.ok) {
+    throw new Error('Échec de la mise à jour de data.json pour la suppression');
+  }
+
+  return projectId;
+}

@@ -48,8 +48,10 @@
         </div>
 
         <div style="margin-bottom: 1.5rem;">
-          <label for="projectImage" style="display:block; margin-bottom:0.5rem; font-weight:500;">📸 Image du projet (Détail)</label>
-          <input type="file" id="projectImage" accept="image/*" />
+          <label for="projectImages" style="display:block; margin-bottom:0.5rem; font-weight:500;">📸 Images du projet (Détail) — plusieurs autorisées</label>
+          <input type="file" id="projectImages" accept="image/*" multiple />
+          <div id="projectImagesList" style="margin-top:0.75rem; display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center;"></div>
+          <div id="projectImagesCount" style="font-size:13px; color:#444; margin-top:0.5rem;"></div>
         </div>
 
         <!-- <button onclick="submitProject()">Publier le projet</button> -->
@@ -101,6 +103,81 @@
     return data.secure_url;
   }
 
+  // Prévisualisation et gestion des fichiers multiples (conserver les sélections successives)
+  const projectImagesInput = document.getElementById('projectImages');
+  const projectImagesList = document.getElementById('projectImagesList');
+  const projectImagesCount = document.getElementById('projectImagesCount');
+
+  let currentProjectFiles = [];
+
+  function sameFile(a, b) {
+    return a.name === b.name && a.size === b.size && a.lastModified === b.lastModified;
+  }
+
+  function rebuildInputFiles() {
+    const dt = new DataTransfer();
+    currentProjectFiles.forEach(f => dt.items.add(f));
+    projectImagesInput.files = dt.files;
+  }
+
+  function updateProjectImagesPreview() {
+    const files = currentProjectFiles;
+    projectImagesList.innerHTML = '';
+    projectImagesCount.textContent = files.length > 0 ? `${files.length} image(s) sélectionnée(s)` : '';
+
+    files.forEach((file, index) => {
+      const wrapper = document.createElement('div');
+      wrapper.style.position = 'relative';
+      wrapper.style.width = '80px';
+      wrapper.style.height = '80px';
+
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(file);
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.style.width = '100%';
+      img.style.height = '100%';
+      img.style.objectFit = 'cover';
+      img.alt = file.name;
+
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = '✕';
+      btn.title = 'Retirer cette image';
+      btn.style.position = 'absolute';
+      btn.style.top = '2px';
+      btn.style.right = '2px';
+      btn.style.background = 'rgba(0,0,0,0.5)';
+      btn.style.color = '#fff';
+      btn.style.border = 'none';
+      btn.style.borderRadius = '50%';
+      btn.style.width = '22px';
+      btn.style.height = '22px';
+      btn.style.cursor = 'pointer';
+
+      btn.addEventListener('click', () => {
+        currentProjectFiles.splice(index, 1);
+        rebuildInputFiles();
+        updateProjectImagesPreview();
+      });
+
+      wrapper.appendChild(img);
+      wrapper.appendChild(btn);
+      projectImagesList.appendChild(wrapper);
+    });
+  }
+
+  projectImagesInput.addEventListener('change', (e) => {
+    const added = Array.from(e.target.files || []);
+    // Ajouter uniquement les fichiers non dupliqués
+    added.forEach(af => {
+      const exists = currentProjectFiles.some(cf => sameFile(cf, af));
+      if (!exists) currentProjectFiles.push(af);
+    });
+    rebuildInputFiles();
+    updateProjectImagesPreview();
+  });
+
   // Fonction pour soumettre le projet
   window.submitProject = async function() {
     const status = document.getElementById('status');
@@ -112,29 +189,27 @@
       const description = document.getElementById('description').value;
       
       const thumbnailInput = document.getElementById('thumbnail');
-      const projectImageInput = document.getElementById('projectImage');
-      
       const thumbnailFile = thumbnailInput.files[0];
-      const projectImageFile = projectImageInput.files[0];
+      const projectFiles = currentProjectFiles.slice();
 
       // Validation
-      if (!title || !thumbnailFile || !projectImageFile) {
-        throw new Error("Le titre, la miniature et l'image du projet sont requis.");
+      if (!title || !thumbnailFile || projectFiles.length === 0) {
+        throw new Error("Le titre, la miniature et au moins une image de projet sont requis.");
       }
 
       status.textContent = "Upload des images en cours...";
 
       // Upload des images vers Cloudinary
-      const [thumbnailUrl, projectImageUrl] = await Promise.all([
-        uploadToCloudinary(thumbnailFile),
-        uploadToCloudinary(projectImageFile)
-      ]);
+      const thumbnailUrlPromise = uploadToCloudinary(thumbnailFile);
+      const projectImagesPromises = projectFiles.map(f => uploadToCloudinary(f));
+
+      const thumbnailUrl = await thumbnailUrlPromise;
+      const projectImagesUrls = await Promise.all(projectImagesPromises);
 
       status.textContent = "Mise à jour de GitHub...";
 
-      // 🔁 On stocke les URL complètes de Cloudinary
-      // Convention : index 0 = Miniature, index 1 = Image du projet
-      const imagesList = [thumbnailUrl, projectImageUrl];
+      // Convention : index 0 = Miniature, ensuite les images du projet
+      const imagesList = [thumbnailUrl, ...projectImagesUrls];
 
       // ⚙️ Importe la fonction de mise à jour
       const { addProjectToData } = await import('./update-data.js');
@@ -153,6 +228,15 @@
         <p>Les images ont été hébergées sur Cloudinary.</p>
         <p>Actualise ton site dans quelques minutes (le temps que GitHub Pages se mette à jour).</p>
       `;
+
+      // Réinitialiser le formulaire
+      document.getElementById('title').value = '';
+      document.getElementById('description').value = '';
+      thumbnailInput.value = '';
+      projectImagesInput.value = '';
+      currentProjectFiles = [];
+      rebuildInputFiles();
+      updateProjectImagesPreview();
 
     } catch (error) {
       console.error(error);

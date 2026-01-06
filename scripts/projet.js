@@ -25,6 +25,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   imagesToDisplay.forEach(imgSrc => {
     const img = document.createElement('img');
     img.src = getImageUrl(imgSrc);
+    img.loading = 'lazy';
+    img.decoding = 'async';
     img.alt = project.title;
     imagesContainer.appendChild(img);
   });
