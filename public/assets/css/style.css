@@ -1272,9 +1272,17 @@ footer {
 /* ---------------------*/
 /* Image du projet */
 #project-images {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 90%;
   max-width: 1238px;
   margin: 0 auto;
+  overflow: clip;
   border-radius: 8px;
 }
 #project-images img {
