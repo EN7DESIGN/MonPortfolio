@@ -3,7 +3,9 @@
     "brand-identity": {
       "title": "Brand<br>identity",
       "background": "Texture-Brand.png",
-      "projects": []
+      "projects": [
+        "project-step-entreprise"
+      ]
     },
     "ui-ux-design": {
       "title": "UI/UX<br>design",
@@ -21,5 +23,16 @@
       "projects": []
     }
   },
-  "projects": {}
+  "projects": {
+    "project-step-entreprise": {
+      "title": "Step<br>entreprise",
+      "description": "Société du Tourisme,<br>\nEnvironnement et Patrimoine.",
+      "images": [
+        "https://res.cloudinary.com/en7design/image/upload/v1767717794/vfxjyocww1i6dewr6ubd.png",
+        "https://res.cloudinary.com/en7design/image/upload/v1767717796/mgiqurzbtitb5b96dtxd.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1767717796/n1q84mmsl9ft2dkny3hr.webp"
+      ],
+      "category": "brand-identity"
+    }
+  }
 }
