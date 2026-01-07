@@ -43,15 +43,15 @@
         <textarea id="description" placeholder="Description"></textarea>
         
         <div style="margin-top: 1rem; margin-bottom: 1rem;">
-          <label for="thumbnail" style="display:block; margin-bottom:0.5rem; font-weight:500;">🖼️ Miniature (Liste des projets)</label>
+          <label for="thumbnail" style="display:block; margin-bottom:0.5rem; font-weight:500;">🎨 Miniature (Liste des projets)</label>
           <input type="file" id="thumbnail" accept="image/*" />
         </div>
 
         <div style="margin-bottom: 1.5rem;">
-          <label for="projectImages" style="display:block; margin-bottom:0.5rem; font-weight:500;">📸 Images du projet (Détail) — plusieurs autorisées</label>
+          <label for="projectImages" style="display:block; margin-bottom:0.5rem; font-weight:500;">🗞️ Images du projet</label>
           <input type="file" id="projectImages" accept="image/*" multiple />
-          <div id="projectImagesList" style="margin-top:0.75rem; display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center;"></div>
-          <div id="projectImagesCount" style="font-size:13px; color:#444; margin-top:0.5rem;"></div>
+          <div id="projectImagesList" style="margin-top:0.75rem; display:flex; gap:0.4rem; flex-wrap:wrap; align-items:center;"></div>
+          <div id="projectImagesCount" style="font-size:1rem; color:#444; margin-top:0.5rem;"></div>
         </div>
 
         <!-- <button onclick="submitProject()">Publier le projet</button> -->
@@ -130,6 +130,8 @@
       wrapper.style.position = 'relative';
       wrapper.style.width = '80px';
       wrapper.style.height = '80px';
+      wrapper.style.borderRadius = '6px';
+      wrapper.style.overflow = 'clip';
 
       const img = document.createElement('img');
       img.src = URL.createObjectURL(file);
@@ -151,8 +153,8 @@
       btn.style.color = '#fff';
       btn.style.border = 'none';
       btn.style.borderRadius = '50%';
-      btn.style.width = '22px';
-      btn.style.height = '22px';
+      btn.style.minWidth = '22px';
+      btn.style.minHeight = '22px';
       btn.style.cursor = 'pointer';
 
       btn.addEventListener('click', () => {

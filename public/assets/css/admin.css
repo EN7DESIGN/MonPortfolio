@@ -143,13 +143,14 @@ input::placeholder {
       -ms-flex-pack: justify;
           justify-content: space-between;
   position: relative;
-  padding: 6px 20px;
   border-radius: 6px;
   border: 1px solid rgba(22, 23, 31, 0.2);
 }
+.Grp01 input {
+  padding: 10px;
+}
 .Grp01 button {
   width: 50px;
-  margin-right: -18px;
   background: none;
   border: none;
   color: #16171F;

@@ -1214,7 +1214,6 @@ footer {
   line-height: 90%;
 }
 .Projet-TitleGrp .Left #project-description {
-  width: 192px;
   font-weight: 200;
   font-size: clamp(0.75rem, 0.5833rem + 0.7407vw, 1.25rem);
 }
