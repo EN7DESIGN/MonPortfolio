@@ -6,18 +6,40 @@
   <title>Gérer les projets</title>
   <link rel="icon" href="/assets/favicon/Favicon.svg" type="image/x-icon">
   <link rel="stylesheet" href="/assets/css/system.css">
+  <link rel="stylesheet" href="/assets/css/admin.css"> <!-- Ajout pour les styles de login -->
   <link rel="stylesheet" href="/assets/css/manage.css">
 </head>
 <body>
   <section class="Wrapper">
     <div class="Container">
-      <h1>🗑️<br>Gérer les projets</h1>
-      <p>Liste des projets présents dans <code>data.json</code>.
-        <br>Supprimez un projet si nécessaire.
-      </p>
+      <!-- Login form -->
+      <div id="Box1">
+        <h1>🔐<br>Accès Admin</h1>
+        <div id="password-screen" class="Container-Box1">
+          <div class="Grp01">
+            <input type="password" id="adminPassword" placeholder="Mot de passe admin"/>
+            <button type="button" onclick="togglePasswordVisibility()">
+              ⏿
+            </button>
+          </div>
 
-      <div id="status"></div>
-      <div id="manage-list" class="manage-list">Chargement...</div>
+          <button onclick="checkPassword()" class="Button01 Primary Medium" role="button">
+            Accéder à la gestion
+          </button>
+          <p id="password-error" style="color:red; display:none;">Mot de passe incorrect.</p>
+        </div>
+      </div>
+
+      <!-- Section sécurisée (cachée au départ) -->
+      <div id="manage-section" class="hidden" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+        <h1>🗑️<br>Gérer les projets</h1>
+        <p>Liste des projets présents dans <code>data.json</code>.
+          <br>Supprimez un projet si nécessaire.
+        </p>
+  
+        <div id="status"></div>
+        <div id="manage-list" class="manage-list">Chargement...</div>
+      </div>
     </div>
   </section>
 
@@ -25,6 +47,34 @@
     // On importe dynamiquement pour ne pas bloquer si le fichier manque, 
     // mais maintenant le fichier SERA présent car on va l'enlever du .gitignore
     // Cependant, on garde l'import dynamique par sécurité ou propreté.
+
+    // 🔑 Mot de passe admin (identique à index.html)
+    const ADMIN_PASSWORD = "login";
+
+    // Fonction accessible globalement (nécessaire pour onclick)
+    window.checkPassword = function() {
+      const input = document.getElementById('adminPassword').value;
+      if (input === ADMIN_PASSWORD) {
+        document.getElementById('password-screen').classList.add('hidden');
+        document.getElementById('Box1').classList.add('hidden');
+        
+        const manageSection = document.getElementById('manage-section');
+        manageSection.classList.remove('hidden');
+        // On rétablit le display flex car la classe hidden met display: none !important
+        manageSection.style.display = 'flex'; 
+
+        // On lance le chargement des données SEULEMENT après le login réussi
+        initDataLoad();
+      } else {
+        document.getElementById('password-error').style.display = 'block';
+      }
+    };
+
+    window.togglePasswordVisibility = function() {
+      const passwordField = document.getElementById('adminPassword');
+      const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordField.setAttribute('type', type);
+    };
 
     const status = document.getElementById('status');
     const list = document.getElementById('manage-list');
@@ -49,7 +99,7 @@
     function getGitHubToken() {
         let token = sessionStorage.getItem('github_token');
         if (!token) {
-            token = prompt("🔒 Sécurité : Veuillez entrer votre Token GitHub pour confirmer la suppression (il ne sera pas stocké) :");
+            token = prompt("🔒 Sécurité : Veuillez entrer votre Token GitHub pour confirmer la suppression (il ne sera pas stocké sur le serveur) :");
             if (token) {
                 // On peut le stocker temporairement pour la session
                 if(confirm("Voulez-vous mémoriser ce token pour cette session navigateur ?")) {
@@ -136,7 +186,8 @@
       });
     }
 
-    (async ()=>{
+    // Fonction d'init séparée, appelée après le login
+    async function initDataLoad(){
       try{
         const data = await loadDataLocal();
         renderProjects(data);
@@ -144,7 +195,9 @@
         list.textContent = 'Erreur lors du chargement des projets.';
         status.textContent = e.message;
       }
-    })();
+    }
+
+    // (async ()=>{ ... })(); // On ne lance plus automatiquement au chargement de la page
 
   </script>
 </body>
