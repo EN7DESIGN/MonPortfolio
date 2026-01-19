@@ -4,7 +4,8 @@
       "title": "Brand<br>identity",
       "background": "Texture-Brand.png",
       "projects": [
-        "project-step-entreprise"
+        "project-step-entreprise",
+        "project-projet-test"
       ]
     },
     "ui-ux-design": {
@@ -66,6 +67,15 @@
         "https://res.cloudinary.com/en7design/image/upload/v1767754275/jjoydt7z3xenhftou3ib.webp",
         "https://res.cloudinary.com/en7design/image/upload/v1767754276/fmp6stvd6o1civfa0ztq.webp",
         "https://res.cloudinary.com/en7design/image/upload/v1767754282/z0itmqava6bu0ji3pkhs.webp"
+      ],
+      "category": "brand-identity"
+    },
+    "project-projet-test": {
+      "title": "Projet test",
+      "description": "test",
+      "images": [
+        "https://res.cloudinary.com/en7design/image/upload/v1768824597/oroiiabkcsg7stsgkizc.png",
+        "https://res.cloudinary.com/en7design/image/upload/v1768824597/rwrxc3gv6tyjodbubyg4.png"
       ],
       "category": "brand-identity"
     }
