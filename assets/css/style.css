@@ -12,13 +12,13 @@
 
 @font-face {
   font-family: "Body";
-  src: url("../font/Inter-VariableFont.ttf") format("woff2");
+  src: url("../../font/Inter-VariableFont.ttf") format("woff2");
   font-weight: 100, 900;
   font-style: normal;
 }
 @font-face {
   font-family: "Title";
-  src: url("../font/Coralith.woff2") format("woff2"), url("../font/Coralith.woff") format("woff");
+  src: url("../../font/Coralith.woff2") format("woff2"), url("../../font/Coralith.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -296,7 +296,7 @@ body {
   width: 100%;
   height: 640px;
   padding-top: 40px;
-  background-image: url(/public/assets/images/Texture.svg);
+  background-image: url(../images/Texture.svg);
   background-size: cover;
   overflow: clip;
 }
@@ -601,7 +601,7 @@ body {
   overflow: clip;
   padding-top: 92px;
   padding-bottom: 200px;
-  background-image: url(../public/assets/images/Texture2.svg);
+  background-image: url(../images/Texture2.svg);
   background-position: top;
   background-repeat: no-repeat;
   background-size: 100%;

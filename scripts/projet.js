@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   if (!projectId || !project) {
     alert("Projet non trouvé");
-    window.location.href = "index.html";
+    window.location.href = "./index.html";
     return;
   }
 

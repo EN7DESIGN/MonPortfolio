@@ -25,5 +25,5 @@ export function getImageUrl(path) {
     }
     return path;
   }
-  return `./public/assets/images/${path}`;
+  return `./assets/images/${path}`;
 }

@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   if (!categoryId || !categories[categoryId]) {
     alert("Catégorie non trouvée");
-    window.location.href = "index.html";
+    window.location.href = "./index.html";
     return;
   }
 
@@ -45,11 +45,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         <p>${project.description}</p>
         <button>
           Voir le projet
-          <img src="./public/assets/images/Icon-Line 2.svg" alt="">
+          <img src="./assets/images/Icon-Line 2.svg" alt="">
         </button>
     `;
     projectCard.addEventListener('click', () => {
-      window.location.href = `projet.html?project=${projectId}`;
+      window.location.href = `./projet.html?project=${projectId}`;
     });
     projectsList.appendChild(projectCard);
   });
