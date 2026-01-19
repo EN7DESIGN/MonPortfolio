@@ -85,6 +85,13 @@
     }
   };
 
+  // Ajout de l'écouteur d'événement pour la touche Entrée
+  document.getElementById('adminPassword').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      checkPassword();
+    }
+  });
+
   function getGitHubToken() {
     let token = sessionStorage.getItem('github_token');
     if (!token) {
