@@ -222,13 +222,13 @@
 
 @font-face {
   font-family: "Body";
-  src: url("/font/Inter-VariableFont.ttf") format("woff2");
+  src: url("../font/Inter-VariableFont.ttf") format("woff2");
   font-weight: 100, 900;
   font-style: normal;
 }
 @font-face {
   font-family: "Title";
-  src: url("/font/Coralith.woff2") format("woff2"), url("/font/Coralith.woff") format("woff");
+  src: url("../font/Coralith.woff2") format("woff2"), url("../font/Coralith.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }

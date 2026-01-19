@@ -12,13 +12,13 @@
 
 @font-face {
   font-family: "Body";
-  src: url("/font/Inter-VariableFont.ttf") format("woff2");
+  src: url("../font/Inter-VariableFont.ttf") format("woff2");
   font-weight: 100, 900;
   font-style: normal;
 }
 @font-face {
   font-family: "Title";
-  src: url("/font/Coralith.woff2") format("woff2"), url("/font/Coralith.woff") format("woff");
+  src: url("../font/Coralith.woff2") format("woff2"), url("../font/Coralith.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -601,7 +601,7 @@ body {
   overflow: clip;
   padding-top: 92px;
   padding-bottom: 200px;
-  background-image: url(/public/assets/images/Texture2.svg);
+  background-image: url(../public/assets/images/Texture2.svg);
   background-position: top;
   background-repeat: no-repeat;
   background-size: 100%;
@@ -848,7 +848,7 @@ body {
   position: absolute;
   right: -178px;
   top: -56px;
-  background-image: url(/public/assets/images/illust-01.png);
+  background-image: url(../public/assets/images/illust-01.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
