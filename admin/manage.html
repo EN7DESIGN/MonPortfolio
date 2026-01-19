@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gérer les projets</title>
+  <link rel="icon" href="/assets/favicon/Favicon.svg" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/system.css">
+  <link rel="stylesheet" href="/assets/css/manage.css">
+</head>
+<body>
+  <section class="Wrapper">
+    <div class="Container">
+      <h1>🗑️<br>Gérer les projets</h1>
+      <p>Liste des projets présents dans <code>data.json</code>.
+        <br>Supprimez un projet si nécessaire.
+      </p>
+
+      <div id="status"></div>
+      <div id="manage-list" class="manage-list">Chargement...</div>
+    </div>
+  </section>
+
+  <script type="module">
+    import { deleteProject } from './update-data.js';
+
+    const status = document.getElementById('status');
+    const list = document.getElementById('manage-list');
+
+    function getImageUrl(path){
+      if(!path) return '';
+      if(path.startsWith('http')) return path;
+      return `../assets/images/${path}`;
+    }
+
+    async function loadDataLocal(){
+      try{
+        const r = await fetch('../data.json');
+        if(!r.ok) throw new Error('Impossible de charger ../data.json');
+        return await r.json();
+      }catch(e){
+        console.error(e);
+        throw e;
+      }
+    }
+
+    function renderProjects(data){
+      list.innerHTML = '';
+      const projects = data.projects || {};
+      if(Object.keys(projects).length === 0){
+        list.textContent = 'Aucun projet trouvé.';
+        return;
+      }
+
+      Object.entries(projects).forEach(([id, project]) => {
+        const item = document.createElement('div');
+        item.className = 'manage-item';
+
+        const img = document.createElement('img');
+        img.className = 'manage-thumb';
+        img.alt = project.title || id;
+        img.src = getImageUrl((project.images && project.images[0]) ? project.images[0] : '');
+        img.loading = 'lazy';
+
+        const meta = document.createElement('div');
+        meta.className = 'manage-meta';
+        meta.innerHTML = `<strong>${project.title || id}</strong><br><small>Catégorie: ${project.category || '-'}</small>`;
+
+        const actions = document.createElement('div');
+        actions.className = 'manage-actions';
+
+        const viewBtn = document.createElement('button');
+        viewBtn.className = 'neutral';
+        viewBtn.textContent = 'Voir';
+        viewBtn.addEventListener('click', ()=>{
+          window.open(`../projet.html?project=${id}`, '_blank');
+        });
+
+        const delBtn = document.createElement('button');
+        delBtn.className = 'danger';
+        delBtn.textContent = 'Supprimer';
+        delBtn.addEventListener('click', async ()=>{
+          if(!confirm(`Supprimer définitivement le projet « ${project.title || id} » ?`)) return;
+          delBtn.disabled = true; status.textContent = 'Suppression en cours...';
+          try{
+            await deleteProject(id);
+            status.textContent = `Projet ${id} supprimé.`;
+            // retire visuellement
+            item.remove();
+          }catch(e){
+            console.error(e);
+            status.textContent = 'Erreur : ' + e.message;
+            delBtn.disabled = false;
+          }
+        });
+
+        actions.appendChild(viewBtn);
+        actions.appendChild(delBtn);
+
+        item.appendChild(img);
+        item.appendChild(meta);
+        item.appendChild(actions);
+
+        list.appendChild(item);
+      });
+    }
+
+    (async ()=>{
+      try{
+        const data = await loadDataLocal();
+        renderProjects(data);
+      }catch(e){
+        list.textContent = 'Erreur lors du chargement des projets.';
+        status.textContent = e.message;
+      }
+    })();
+
+  </script>
+</body>
+</html>

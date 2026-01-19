@@ -17,5 +17,5 @@ build/
 scss/
 
 # Admin Folder
-admin/
+admin/config.js
 admin/update-data.js
