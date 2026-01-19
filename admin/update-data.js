@@ -1,8 +1,5 @@
 // admin/update-data.js
 
-// 🔑 Remplace par ton vrai token GitHub (celui que tu as copié)
-import { GITHUB_TOKEN } from './config.js';
-
 // 🔧 Remplace par ton nom d'utilisateur et nom de repo
 const USERNAME = 'EN7DESIGN';
 const REPO = 'MonPortfolio';
@@ -28,15 +25,21 @@ function generateProjectId(title) {
 }
 
 // Fonction pour mettre à jour data.json
-export async function addProjectToData(newProjectData) {
+// Le token doit être fourni en argument pour la sécurité (pas stocké en dur)
+export async function addProjectToData(newProjectData, token) {
+  if (!token) throw new Error("Token GitHub manquant.");
+
   const apiUrl = `https://api.github.com/repos/${USERNAME}/${REPO}/contents/data.json`;
 
   // 1. Récupérer le fichier actuel
   const response = await fetch(apiUrl, {
-    headers: { Authorization: `token ${GITHUB_TOKEN}` }
+    headers: { Authorization: `token ${token}` }
   });
 
   if (!response.ok) {
+    if (response.status === 401 || response.status === 403) {
+       throw new Error('Token GitHub invalide ou expiré.');
+    }
     throw new Error('Erreur lors de la lecture de data.json');
   }
 
@@ -75,7 +78,7 @@ export async function addProjectToData(newProjectData) {
   const updateResponse = await fetch(apiUrl, {
     method: 'PUT',
     headers: {
-      'Authorization': `token ${GITHUB_TOKEN}`,
+      'Authorization': `token ${token}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -93,15 +96,20 @@ export async function addProjectToData(newProjectData) {
 }
 
 // Fonction pour supprimer un projet par son ID
-export async function deleteProject(projectId) {
+export async function deleteProject(projectId, token) {
+  if (!token) throw new Error("Token GitHub manquant.");
+
   const apiUrl = `https://api.github.com/repos/${USERNAME}/${REPO}/contents/data.json`;
 
   // 1. Récupérer le fichier actuel
   const response = await fetch(apiUrl, {
-    headers: { Authorization: `token ${GITHUB_TOKEN}` }
+    headers: { Authorization: `token ${token}` }
   });
 
   if (!response.ok) {
+    if (response.status === 401 || response.status === 403) {
+       throw new Error('Token GitHub invalide ou expiré.');
+    }
     throw new Error('Erreur lors de la lecture de data.json');
   }
 
@@ -131,7 +139,7 @@ export async function deleteProject(projectId) {
   const updateResponse = await fetch(apiUrl, {
     method: 'PUT',
     headers: {
-      'Authorization': `token ${GITHUB_TOKEN}`,
+      'Authorization': `token ${token}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({

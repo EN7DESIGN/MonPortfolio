@@ -71,8 +71,12 @@
 
   // Fonction accessible globalement (nécessaire pour onclick)
   window.checkPassword = function() {
-    const input = document.getElementById('adminPassword').value;
-    if (input === ADMIN_PASSWORD) {
+    const passInput = document.getElementById('adminPassword').value;
+    // On peut demander le token ici ou au moment de l'envoi
+    // Pour simplifier, on ne le demande pas ici, on le demandera au moment de l'envoi 
+    // ou on l'ajoute plus tard.
+    
+    if (passInput === ADMIN_PASSWORD) {
       document.getElementById('password-screen').classList.add('hidden');
       document.getElementById('form-section').classList.remove('hidden');
       document.getElementById('Box1').classList.add('hidden');
@@ -80,6 +84,19 @@
       document.getElementById('password-error').style.display = 'block';
     }
   };
+
+  function getGitHubToken() {
+    let token = sessionStorage.getItem('github_token');
+    if (!token) {
+        token = prompt("🔒 Sécurité : Veuillez entrer votre Token GitHub pour publier (il ne sera pas stocké sur le serveur) :");
+        if (token) {
+            if(confirm("Voulez-vous mémoriser ce token pour cette session navigateur ?")) {
+                sessionStorage.setItem('github_token', token);
+            }
+        }
+    }
+    return token;
+  }
 
   // Fonction pour uploader une image sur Cloudinary
   async function uploadToCloudinary(file) {
@@ -186,6 +203,12 @@
     status.textContent = "Envoi en cours...";
 
     try {
+      const token = getGitHubToken();
+      if (!token) {
+        status.textContent = "Envoi annulé : Token manquant.";
+        return; 
+      }
+
       const title = document.getElementById('title').value;
       const category = document.getElementById('category').value;
       const description = document.getElementById('description').value;
@@ -216,13 +239,13 @@
       // ⚙️ Importe la fonction de mise à jour
       const { addProjectToData } = await import('./update-data.js');
 
-      // 🚀 Envoie les données à GitHub
+      // 🚀 Envoie les données à GitHub avec le token
       const newId = await addProjectToData({
         title,
         description,
         category,
         images: imagesList
-      });
+      }, token);
 
       status.innerHTML = `
         <h3>✅ Projet ajouté avec succès !</h3>
@@ -242,7 +265,12 @@
 
     } catch (error) {
       console.error(error);
-      status.innerHTML = `❌ Erreur :<br>${error.message}`;
+      if(error.message.includes('Token GitHub invalide')) {
+         sessionStorage.removeItem('github_token');
+         status.textContent = "❌ Erreur : Le Token GitHub est invalide.";
+      } else {
+         status.innerHTML = `❌ Erreur :<br>${error.message}`;
+      }
     }
   };
   window.togglePasswordVisibility = function() {

@@ -22,7 +22,9 @@
   </section>
 
   <script type="module">
-    import { deleteProject } from './update-data.js';
+    // On importe dynamiquement pour ne pas bloquer si le fichier manque, 
+    // mais maintenant le fichier SERA présent car on va l'enlever du .gitignore
+    // Cependant, on garde l'import dynamique par sécurité ou propreté.
 
     const status = document.getElementById('status');
     const list = document.getElementById('manage-list');
@@ -42,6 +44,20 @@
         console.error(e);
         throw e;
       }
+    }
+
+    function getGitHubToken() {
+        let token = sessionStorage.getItem('github_token');
+        if (!token) {
+            token = prompt("🔒 Sécurité : Veuillez entrer votre Token GitHub pour confirmer la suppression (il ne sera pas stocké) :");
+            if (token) {
+                // On peut le stocker temporairement pour la session
+                if(confirm("Voulez-vous mémoriser ce token pour cette session navigateur ?")) {
+                    sessionStorage.setItem('github_token', token);
+                }
+            }
+        }
+        return token;
     }
 
     function renderProjects(data){
@@ -81,15 +97,30 @@
         delBtn.textContent = 'Supprimer';
         delBtn.addEventListener('click', async ()=>{
           if(!confirm(`Supprimer définitivement le projet « ${project.title || id} » ?`)) return;
-          delBtn.disabled = true; status.textContent = 'Suppression en cours...';
-          try{
-            await deleteProject(id);
+          
+          const token = getGitHubToken();
+          if (!token) {
+              alert("Suppression annulée : Token manquant.");
+              return;
+          }
+
+          delBtn.disabled = true; 
+          status.textContent = 'Chargement du module...';
+
+          try {
+            const module = await import('./update-data.js');
+            status.textContent = 'Suppression en cours sur GitHub...';
+            
+            await module.deleteProject(id, token);
+            
             status.textContent = `Projet ${id} supprimé.`;
-            // retire visuellement
             item.remove();
-          }catch(e){
+          } catch (e) {
             console.error(e);
             status.textContent = 'Erreur : ' + e.message;
+            if(e.message.includes('Token GitHub invalide')) {
+                sessionStorage.removeItem('github_token'); // On oublie le mauvais token
+            }
             delBtn.disabled = false;
           }
         });
