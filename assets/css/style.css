@@ -35,6 +35,10 @@ body {
           box-sizing: border-box;
 }
 
+#slideBtn a {
+  text-decoration: none;
+}
+
 /* Loader overlay */
 .loader-container {
   position: fixed;
@@ -639,6 +643,9 @@ body {
   width: 90%;
   max-width: 680px;
   margin: 0 auto;
+}
+.Folio .Container a {
+  text-decoration: none;
 }
 @media (max-width: 686px) {
   .Folio .Container {
