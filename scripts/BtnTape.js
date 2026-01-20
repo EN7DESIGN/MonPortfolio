@@ -38,6 +38,17 @@ function setupButtonInteraction(buttonSelector, tapeClass, duration) {
           bouton.classList.remove(tapeClass);
           // Retire le focus pour éviter le comportement de survol
           bouton.blur();
+
+          // Gestion de la navigation pour les liens parents (fix mobile)
+          const link = bouton.closest('a');
+          if (link && link.href) {
+            const target = link.getAttribute('target');
+            if (target === '_blank') {
+              window.open(link.href, '_blank');
+            } else {
+              window.location.href = link.href;
+            }
+          }
         }, duration);
       });
     });
