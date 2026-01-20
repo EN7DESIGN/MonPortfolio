@@ -10,7 +10,9 @@
     "ui-ux-design": {
       "title": "UI/UX<br>design",
       "background": "Texture-UIUX.png",
-      "projects": []
+      "projects": [
+        "project-projet-test"
+      ]
     },
     "visual-design": {
       "title": "Visual<br>design",
@@ -68,6 +70,15 @@
         "https://res.cloudinary.com/en7design/image/upload/v1767754282/z0itmqava6bu0ji3pkhs.webp"
       ],
       "category": "brand-identity"
+    },
+    "project-projet-test": {
+      "title": "Projet<br>Test",
+      "description": "Le projet test",
+      "images": [
+        "https://res.cloudinary.com/en7design/image/upload/v1768931146/s8yef2hpukm7lyefxqzc.png",
+        "https://res.cloudinary.com/en7design/image/upload/v1768931147/jq8sfsfoerhxrdslrauk.png"
+      ],
+      "category": "ui-ux-design"
     }
   }
 }
