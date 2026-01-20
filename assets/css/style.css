@@ -111,7 +111,8 @@ body {
   background-color: white;
   -webkit-box-shadow: 0 2px 4px 0 rgba(22, 23, 31, 0.1);
           box-shadow: 0 2px 4px 0 rgba(22, 23, 31, 0.1);
-  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+          backdrop-filter: blur(50px);
   z-index: 99;
 }
 @media (max-width: 860px) {
@@ -251,7 +252,8 @@ body {
   height: 100dvh;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
   top: 0;
   left: 360%;
   right: 0;
@@ -819,25 +821,25 @@ body {
 
 /* ............................................. */
 .CardContainer .Brand {
-  background-image: url(/public/assets/images/Brand.svg);
+  background-image: url(../images/Brand.svg);
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .CardContainer .UIUX {
-  background-image: url(/public/assets/images/UIUX.svg);
+  background-image: url(../images/UIUX.svg);
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .CardContainer .Visual {
-  background-image: url(/public/assets/images/VisualDesign.svg);
+  background-image: url(../images/VisualDesign.svg);
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .CardContainer .Graphic {
-  background-image: url(/public/assets/images/GraphicDesign.svg);
+  background-image: url(../images/GraphicDesign.svg);
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -848,7 +850,7 @@ body {
   position: absolute;
   right: -178px;
   top: -56px;
-  background-image: url(../images/illust-01.png);
+  background-image: url(/assets/images/illust-01.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -1000,7 +1002,7 @@ footer {
   overflow: clip;
   padding-bottom: 100px;
   padding-top: 32px;
-  background-image: url(/public/assets/images/Texture2.svg);
+  background-image: url(../images/Texture2.svg);
   background-position: top;
   background-repeat: no-repeat;
   background-size: 100%;
@@ -1302,4 +1304,70 @@ footer {
   width: 36px;
 }
 
-/* ------------------------------- *//*# sourceMappingURL=style.css.map */
+/* ------------------------------- */
+/* Back To Top Button */
+.BtnBackToTop {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 48px;
+  height: 48px;
+  background-color: #16171F;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translateY(20px);
+          transform: translateY(20px);
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  z-index: 999;
+  -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.BtnBackToTop:hover {
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
+  -webkit-box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+.BtnBackToTop.visible {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+.BtnBackToTop svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+@media (max-width: 600px) {
+  .BtnBackToTop {
+    bottom: 20px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
+  }
+  .BtnBackToTop svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* ................. */
