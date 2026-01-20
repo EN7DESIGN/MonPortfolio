@@ -565,8 +565,8 @@ body {
   padding: 0px 10px;
   -ms-flex-negative: 0;
       flex-shrink: 0;
-  -webkit-animation: scroll 10s linear infinite;
-          animation: scroll 10s linear infinite;
+  -webkit-animation: scroll 18s linear infinite;
+          animation: scroll 18s linear infinite;
 }
 
 .LogoClientSection:hover .Container {
