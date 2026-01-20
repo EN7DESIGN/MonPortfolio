@@ -129,7 +129,13 @@
                         <p>Ils me font confiance</p>
                         <div class="Wrapper">
                             <div class="Container">
-                                <img src="https://res.cloudinary.com/en7design/image/upload/v1768911179/LogoClients_tzxqog.png" alt="Les logos de mes clients">
+                                <img src="https://res.cloudinary.com/en7design/image/upload/v1768911179/LogoClients_tzxqog.png" alt="Les logos de mes clients" loading="eager">
+                            </div>
+                            <div class="Container">
+                                <img src="https://res.cloudinary.com/en7design/image/upload/v1768911179/LogoClients_tzxqog.png" alt="Les logos de mes clients" loading="eager">
+                            </div>
+                            <div class="Container">
+                                <img src="https://res.cloudinary.com/en7design/image/upload/v1768911179/LogoClients_tzxqog.png" alt="Les logos de mes clients" loading="eager">
                             </div>
                         </div>
                     </Section>
@@ -238,19 +244,5 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
             <script src="./scripts/GsapAnim.js"></script>
         <!-- ---------------- -->
-
-        <!-- Script pour dupliquer les logos dynamiquement dans le DOM sans les doubler dans le html -->
-            <script>
-                var copy = document.querySelector(".Container"); //la box qui contient les logos
-                var logosSection = document.querySelector(".Wrapper"); //la section ou box parent
-                // Nombre de copies à créer
-                var numberOfCopies = 4;
-
-                for (let i = 0; i < numberOfCopies; i++) {
-                    let clone = copy.cloneNode(true);
-                    logosSection.appendChild(clone);
-                }
-            </script>
-        <!-- --------------------------------------------------------------------------------------- -->
     </body>
 </html>

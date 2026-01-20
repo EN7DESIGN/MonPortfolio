@@ -563,6 +563,8 @@ body {
   display: flex;
   gap: 20px;
   padding: 0px 10px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
   -webkit-animation: scroll 10s linear infinite;
           animation: scroll 10s linear infinite;
 }
