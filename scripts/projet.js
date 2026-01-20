@@ -31,6 +31,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     imagesContainer.appendChild(img);
   });
 
-  // Cacher le loader
-  document.getElementById('loader').classList.add('hidden');
+
 });

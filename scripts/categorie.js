@@ -54,6 +54,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     projectsList.appendChild(projectCard);
   });
 
-  // Cacher le loader
-  document.getElementById('loader').classList.add('hidden');
+
 });
