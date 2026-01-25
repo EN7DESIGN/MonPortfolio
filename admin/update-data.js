@@ -24,6 +24,22 @@ function generateProjectId(title) {
   return id;
 }
 
+// Helpers pour gérer l'encodage/décodage Base64 avec support UTF-8 (accents, etc.)
+function utf8ToBase64(str) {
+  const bytes = new TextEncoder().encode(str);
+  let binString = "";
+  for (let i = 0; i < bytes.byteLength; i++) {
+    binString += String.fromCharCode(bytes[i]);
+  }
+  return btoa(binString);
+}
+
+function base64ToUtf8(str) {
+  const binString = atob(str);
+  const bytes = Uint8Array.from(binString, (m) => m.charCodeAt(0));
+  return new TextDecoder().decode(bytes);
+}
+
 // Fonction pour mettre à jour data.json
 // Le token doit être fourni en argument pour la sécurité (pas stocké en dur)
 export async function addProjectToData(newProjectData, token) {
@@ -44,7 +60,7 @@ export async function addProjectToData(newProjectData, token) {
   }
 
   const fileData = await response.json();
-  const currentContent = JSON.parse(atob(fileData.content));
+  const currentContent = JSON.parse(base64ToUtf8(fileData.content));
 
   // 2. Générer un nouvel ID unique basé sur le titre du projet
   let newId = generateProjectId(newProjectData.title);
@@ -72,7 +88,7 @@ export async function addProjectToData(newProjectData, token) {
   currentContent.categories[newProjectData.category].projects.push(newId);
 
   // 5. Encoder le nouveau contenu en base64
-  const updatedContent = btoa(JSON.stringify(currentContent, null, 2));
+  const updatedContent = utf8ToBase64(JSON.stringify(currentContent, null, 2));
 
   // 6. Envoyer la mise à jour
   const updateResponse = await fetch(apiUrl, {
@@ -114,7 +130,7 @@ export async function deleteProject(projectId, token) {
   }
 
   const fileData = await response.json();
-  const currentContent = JSON.parse(atob(fileData.content));
+  const currentContent = JSON.parse(base64ToUtf8(fileData.content));
 
   // 2. Vérifier que le projet existe
   if (!currentContent.projects[projectId]) {
@@ -133,7 +149,7 @@ export async function deleteProject(projectId, token) {
   });
 
   // 5. Encoder le nouveau contenu en base64
-  const updatedContent = btoa(JSON.stringify(currentContent, null, 2));
+  const updatedContent = utf8ToBase64(JSON.stringify(currentContent, null, 2));
 
   // 6. Envoyer la mise à jour
   const updateResponse = await fetch(apiUrl, {
