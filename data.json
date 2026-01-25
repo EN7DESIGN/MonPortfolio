@@ -4,8 +4,7 @@
       "title": "Brand<br>identity",
       "background": "Texture-Brand.png",
       "projects": [
-        "project-step-entreprise",
-        "project-fanzone-rdc-2025"
+        "project-step-entreprise"
       ]
     },
     "ui-ux-design": {
@@ -67,20 +66,6 @@
         "https://res.cloudinary.com/en7design/image/upload/v1767754275/jjoydt7z3xenhftou3ib.webp",
         "https://res.cloudinary.com/en7design/image/upload/v1767754276/fmp6stvd6o1civfa0ztq.webp",
         "https://res.cloudinary.com/en7design/image/upload/v1767754282/z0itmqava6bu0ji3pkhs.webp"
-      ],
-      "category": "brand-identity"
-    },
-    "project-fanzone-rdc-2025": {
-      "title": "Fanzone<br>RDC 2025",
-      "description": "Un projet d’aménagement d'un espace<br>\ndédié aux Congolais de la diaspora<br>\nau Maroc pour suivre la CAN 2025.",
-      "images": [
-        "https://res.cloudinary.com/en7design/image/upload/v1769379278/daojugsuj7lneort6udc.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1769379281/dzwxsogcktqn22a5jsek.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1769379281/xaeku27einxvo4sz0wbu.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1769379279/dudwpihjz1psagh3q0jo.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1769379278/dmsgmidenbmawuulktgq.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1769379281/ij3xq9rz6upikddttaeu.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1769379281/vgpo3fktfoftjebt2pu1.webp"
       ],
       "category": "brand-identity"
     }
