@@ -5,7 +5,8 @@
       "background": "Texture-Brand.png",
       "projects": [
         "project-step-entreprise",
-        "project-fanzone-rdc-2025"
+        "project-fanzone-rdc-2025",
+        "project-skydom-technologies"
       ]
     },
     "ui-ux-design": {
@@ -81,6 +82,22 @@
         "https://res.cloudinary.com/en7design/image/upload/v1769380807/qrxgdkdcvohk2s3mlrsj.webp",
         "https://res.cloudinary.com/en7design/image/upload/v1769380809/qsuomzhcd7i9zq6iq3v0.webp",
         "https://res.cloudinary.com/en7design/image/upload/v1769380809/zlz72vl3fp163mkbrhmr.webp"
+      ],
+      "category": "brand-identity"
+    },
+    "project-skydom-technologies": {
+      "title": "Skydom<br>technologies",
+      "description": "Une entreprise experte dans<br>\nle secteur de la technologie.",
+      "images": [
+        "https://res.cloudinary.com/en7design/image/upload/v1769793373/vmab4iqbllrsxrn1i7zk.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1769793373/tr2ffnp5m4rxshylljx2.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1769793375/dixopw4asgtdgq635j5q.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1769793375/bl3ebvemgow4ki5vl7dc.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1769793374/xzahejpgvaxj7z5zxlew.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1769793373/esfqfp8cknlxwnahbj0f.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1769793373/bpduzydsg1etsocbcqyg.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1769793374/wdahueqzuer7h8jjf6u1.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1769793374/haedngedb9aie2clcmna.webp"
       ],
       "category": "brand-identity"
     }
