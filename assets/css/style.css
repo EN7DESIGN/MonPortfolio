@@ -1056,8 +1056,16 @@ footer {
       -ms-flex-pack: center;
           justify-content: center;
   gap: 18px;
+  padding: 0px 40px;
   margin: 0 auto;
   max-width: 1222px;
+  /* Responsive */
+  /* ---------------- */
+}
+@media (max-width: 698px) {
+  .Card-Container {
+    padding: 0px 10px;
+  }
 }
 
 .project-card {
