@@ -1062,7 +1062,7 @@ footer {
   /* Responsive */
   /* ---------------- */
 }
-@media (max-width: 698px) {
+@media (max-width: 379px) {
   .Card-Container {
     padding: 0px 10px;
   }
