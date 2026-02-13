@@ -41,13 +41,11 @@ function base64ToUtf8(str) {
 }
 
 // Fonction pour mettre à jour data.json
-// Le token doit être fourni en argument pour la sécurité (pas stocké en dur)
 export async function addProjectToData(newProjectData, token) {
   if (!token) throw new Error("Token GitHub manquant.");
 
   const apiUrl = `https://api.github.com/repos/${USERNAME}/${REPO}/contents/data.json`;
 
-  // 1. Récupérer le fichier actuel
   const response = await fetch(apiUrl, {
     headers: { Authorization: `token ${token}` }
   });
@@ -62,10 +60,8 @@ export async function addProjectToData(newProjectData, token) {
   const fileData = await response.json();
   const currentContent = JSON.parse(base64ToUtf8(fileData.content));
 
-  // 2. Générer un nouvel ID unique basé sur le titre du projet
   let newId = generateProjectId(newProjectData.title);
 
-  // Vérifier si l'ID existe déjà et ajouter un suffixe si nécessaire
   let suffix = 1;
   const originalId = newId;
   while (currentContent.projects[newId]) {
@@ -73,7 +69,6 @@ export async function addProjectToData(newProjectData, token) {
     suffix++;
   }
 
-  // 3. Ajouter le projet
   currentContent.projects[newId] = {
     title: newProjectData.title,
     description: newProjectData.description,
@@ -82,16 +77,13 @@ export async function addProjectToData(newProjectData, token) {
     link: newProjectData.link || ""
   };
 
-  // 4. Ajouter l’ID à la catégorie
   if (!currentContent.categories[newProjectData.category].projects) {
     currentContent.categories[newProjectData.category].projects = [];
   }
   currentContent.categories[newProjectData.category].projects.push(newId);
 
-  // 5. Encoder le nouveau contenu en base64
   const updatedContent = utf8ToBase64(JSON.stringify(currentContent, null, 2));
 
-  // 6. Envoyer la mise à jour
   const updateResponse = await fetch(apiUrl, {
     method: 'PUT',
     headers: {
@@ -101,7 +93,7 @@ export async function addProjectToData(newProjectData, token) {
     body: JSON.stringify({
       message: `Ajout du projet : ${newProjectData.title}`,
       content: updatedContent,
-      sha: fileData.sha  // nécessaire pour mettre à jour
+      sha: fileData.sha
     })
   });
 
@@ -114,6 +106,61 @@ export async function addProjectToData(newProjectData, token) {
 
 // Fonction pour supprimer un projet par son ID
 export async function deleteProject(projectId, token) {
+  if (!token) throw new Error("Token GitHub manquant.");
+
+  const apiUrl = `https://api.github.com/repos/${USERNAME}/${REPO}/contents/data.json`;
+
+  const response = await fetch(apiUrl, {
+    headers: { Authorization: `token ${token}` }
+  });
+
+  if (!response.ok) {
+    if (response.status === 401 || response.status === 403) {
+       throw new Error('Token GitHub invalide ou expiré.');
+    }
+    throw new Error('Erreur lors de la lecture de data.json');
+  }
+
+  const fileData = await response.json();
+  const currentContent = JSON.parse(base64ToUtf8(fileData.content));
+
+  if (!currentContent.projects[projectId]) {
+    throw new Error(`Le projet ${projectId} n'existe pas.`);
+  }
+
+  delete currentContent.projects[projectId];
+
+  Object.keys(currentContent.categories).forEach(catId => {
+    const cat = currentContent.categories[catId];
+    if (Array.isArray(cat.projects)) {
+      cat.projects = cat.projects.filter(id => id !== projectId);
+    }
+  });
+
+  const updatedContent = utf8ToBase64(JSON.stringify(currentContent, null, 2));
+
+  const updateResponse = await fetch(apiUrl, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `token ${token}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      message: `Suppression du projet : ${projectId}`,
+      content: updatedContent,
+      sha: fileData.sha
+    })
+  });
+
+  if (!updateResponse.ok) {
+    throw new Error('Échec de la mise à jour de data.json pour la suppression');
+  }
+
+  return projectId;
+}
+
+// Fonction pour mettre à jour un projet existant (ex: ajouter un lien)
+export async function updateProject(projectId, updatedData, token) {
   if (!token) throw new Error("Token GitHub manquant.");
 
   const apiUrl = `https://api.github.com/repos/${USERNAME}/${REPO}/contents/data.json`;
@@ -138,21 +185,16 @@ export async function deleteProject(projectId, token) {
     throw new Error(`Le projet ${projectId} n'existe pas.`);
   }
 
-  // 3. Supprimer le projet
-  delete currentContent.projects[projectId];
+  // 3. Mettre à jour les données (fusionner avec l'existant)
+  currentContent.projects[projectId] = {
+    ...currentContent.projects[projectId],
+    ...updatedData
+  };
 
-  // 4. Retirer l'ID des catégories
-  Object.keys(currentContent.categories).forEach(catId => {
-    const cat = currentContent.categories[catId];
-    if (Array.isArray(cat.projects)) {
-      cat.projects = cat.projects.filter(id => id !== projectId);
-    }
-  });
-
-  // 5. Encoder le nouveau contenu en base64
+  // 4. Encoder le nouveau contenu en base64
   const updatedContent = utf8ToBase64(JSON.stringify(currentContent, null, 2));
 
-  // 6. Envoyer la mise à jour
+  // 5. Envoyer la mise à jour
   const updateResponse = await fetch(apiUrl, {
     method: 'PUT',
     headers: {
@@ -160,14 +202,14 @@ export async function deleteProject(projectId, token) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      message: `Suppression du projet : ${projectId}`,
+      message: `Mise à jour du projet : ${projectId}`,
       content: updatedContent,
       sha: fileData.sha
     })
   });
 
   if (!updateResponse.ok) {
-    throw new Error('Échec de la mise à jour de data.json pour la suppression');
+    throw new Error('Échec de la mise à jour de data.json');
   }
 
   return projectId;
