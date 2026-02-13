@@ -12,7 +12,9 @@
     "ui-ux-design": {
       "title": "UI/UX<br>design",
       "background": "Texture-UIUX.png",
-      "projects": []
+      "projects": [
+        "project-jago-boutique"
+      ]
     },
     "visual-design": {
       "title": "Visual<br>design",
@@ -100,6 +102,22 @@
         "https://res.cloudinary.com/en7design/image/upload/v1769793374/haedngedb9aie2clcmna.webp"
       ],
       "category": "brand-identity"
+    },
+    "project-jago-boutique": {
+      "title": "JAGO<br>boutique",
+      "description": "une plateforme e-commerce ambitieuse conçue pour<br>devenir une destination de shopping incontournable<br>pour toute la famille (hommes, femmes et enfants).",
+      "images": [
+        "https://res.cloudinary.com/en7design/image/upload/v1771006541/yb3wau2dfuk1btpshatf.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1771006543/sokwjr3o43xdsh9gjvst.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1771006538/wjc9qp7v6dqzf2wcqtsb.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1771006538/zoyta4h7rkk4j6b95sta.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1771006544/wrzrg5ct5f1ghyf35wlt.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1771006549/siedpkkmgsvaxnu1b91d.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1771006542/r469hz4yxn7vayyrpipa.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1771006539/bwqnhfddy6zuvyazfikf.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1771006538/kvwyc5xn43ybbmkk6sk9.webp"
+      ],
+      "category": "ui-ux-design"
     }
   }
 }
