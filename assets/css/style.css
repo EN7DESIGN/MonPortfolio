@@ -115,8 +115,7 @@ body {
   background-color: white;
   -webkit-box-shadow: 0 2px 4px 0 rgba(22, 23, 31, 0.1);
           box-shadow: 0 2px 4px 0 rgba(22, 23, 31, 0.1);
-  -webkit-backdrop-filter: blur(50px);
-          backdrop-filter: blur(50px);
+  backdrop-filter: blur(50px);
   z-index: 99;
 }
 @media (max-width: 860px) {
@@ -256,8 +255,7 @@ body {
   height: 100dvh;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.9);
-  -webkit-backdrop-filter: blur(8px);
-          backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   top: 0;
   left: 360%;
   right: 0;
@@ -1060,12 +1058,14 @@ footer {
   margin: 0 auto;
   max-width: 1222px;
   /* Responsive */
-  /* ---------------- */
 }
 @media (max-width: 379px) {
   .Card-Container {
     padding: 0px 10px;
   }
+}
+.Card-Container {
+  /* ---------------- */
 }
 
 .project-card {
@@ -1100,11 +1100,13 @@ footer {
   -webkit-transform-origin: center center;
           transform-origin: center center;
   overflow: clip;
-  /* keep position relative for potential overlays */
 }
 .project-card:hover {
   -webkit-transform: scale(1.04);
           transform: scale(1.04);
+}
+.project-card {
+  /* keep position relative for potential overlays */
 }
 
 .project-card h3 {
@@ -1332,13 +1334,13 @@ footer {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 80px 0;
   width: 100%;
 }
 
 .Project-BtnLink {
   display: inline-block;
   padding: 1.2rem 2.5rem;
+  margin-top: 24px;
   background-color: #16171F;
   color: #FFFFFF;
   text-decoration: none;
