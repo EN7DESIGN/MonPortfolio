@@ -31,5 +31,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     imagesContainer.appendChild(img);
   });
 
-
+  // Affichage du bouton lien si présent
+  if (project.link) {
+    const linkContainer = document.getElementById('project-link-container');
+    const linkBtn = document.createElement('a');
+    linkBtn.href = project.link;
+    linkBtn.target = '_blank';
+    linkBtn.className = 'Project-BtnLink';
+    linkBtn.textContent = 'Voir le projet en ligne';
+    linkContainer.appendChild(linkBtn);
+  }
 });

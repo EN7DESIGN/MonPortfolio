@@ -78,7 +78,8 @@ export async function addProjectToData(newProjectData, token) {
     title: newProjectData.title,
     description: newProjectData.description,
     images: newProjectData.images,
-    category: newProjectData.category
+    category: newProjectData.category,
+    link: newProjectData.link || ""
   };
 
   // 4. Ajouter l’ID à la catégorie

@@ -154,6 +154,40 @@
           window.open(`../projet.html?project=${id}`, '_blank');
         });
 
+        const linkBtn = document.createElement('button');
+        linkBtn.className = 'neutral';
+        linkBtn.textContent = 'Lien';
+        linkBtn.title = 'Modifier le lien du projet';
+        linkBtn.addEventListener('click', async () => {
+          const currentLink = project.link || "";
+          const newLink = prompt(`Modifier le lien pour « ${project.title || id} » :`, currentLink);
+          
+          if (newLink === null || newLink === currentLink) return;
+
+          const token = getGitHubToken();
+          if (!token) {
+              alert("Modification annulée : Token manquant.");
+              return;
+          }
+
+          linkBtn.disabled = true;
+          status.textContent = 'Mise à jour du lien en cours...';
+
+          try {
+            const module = await import('./update-data.js');
+            await module.updateProject(id, { link: newLink }, token);
+            project.link = newLink; // Mettre à jour localement
+            status.textContent = `Lien mis à jour pour ${id}.`;
+            alert("Lien mis à jour avec succès !");
+          } catch (e) {
+            console.error(e);
+            status.textContent = 'Erreur : ' + e.message;
+            linkBtn.disabled = false;
+          } finally {
+            linkBtn.disabled = false;
+          }
+        });
+
         const delBtn = document.createElement('button');
         delBtn.className = 'danger';
         delBtn.textContent = 'Supprimer';
@@ -188,6 +222,7 @@
         });
 
         actions.appendChild(viewBtn);
+        actions.appendChild(linkBtn);
         actions.appendChild(delBtn);
 
         item.appendChild(img);

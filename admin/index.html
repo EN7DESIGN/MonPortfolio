@@ -59,6 +59,11 @@
           <div id="projectImagesCount" style="font-size:1rem; color:#444; margin-top:0.5rem;"></div>
         </div>
 
+        <div style="margin-bottom: 1.5rem;">
+          <label for="link" style="display:block; margin-bottom:0.5rem; font-weight:500;">🔗 Lien du projet (Optionnel)</label>
+          <input id="link" placeholder="https://..." style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;" />
+        </div>
+
         <!-- <button onclick="submitProject()">Publier le projet</button> -->
         <button onclick="submitProject()" class="Button01 Primary Medium" role="button">
             Publier le projet
@@ -256,7 +261,8 @@
         title,
         description,
         category,
-        images: imagesList
+        images: imagesList,
+        link: document.getElementById('link').value
       }, token);
 
       status.innerHTML = `
@@ -271,6 +277,7 @@
       document.getElementById('description').value = '';
       thumbnailInput.value = '';
       projectImagesInput.value = '';
+      document.getElementById('link').value = '';
       currentProjectFiles = [];
       rebuildInputFiles();
       updateProjectImagesPreview();
