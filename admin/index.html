@@ -81,6 +81,7 @@
 
   // Fonction accessible globalement (nécessaire pour onclick)
   window.checkPassword = function() {
+    const passInput = document.getElementById('adminPassword').value;
     // On simule une vérification locale pour l'UI, 
     // mais la vraie validation se fera côté serveur lors de l'envoi.
     if (passInput) {
