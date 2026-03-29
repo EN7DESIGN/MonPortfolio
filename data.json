@@ -13,7 +13,8 @@
       "title": "UI/UX<br>design",
       "background": "Texture-UIUX.png",
       "projects": [
-        "project-jago-boutique"
+        "project-jago-boutique",
+        "project-skydom-technologies-1"
       ]
     },
     "visual-design": {
@@ -119,6 +120,19 @@
       ],
       "category": "ui-ux-design",
       "link": "https://jagomarket.com"
+    },
+    "project-skydom-technologies-1": {
+      "title": "Skydom<br>technologies",
+      "description": "Une plateforme vitrine dédiée à la mise<br>en lumière de l'expertise et de l'offre<br>globale de l'entreprise.",
+      "images": [
+        "https://res.cloudinary.com/en7design/image/upload/v1774774653/wi9y1gt2m6h24pstqkia.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1774774653/orpfqeqmrilrlt6mqotu.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1774774654/uvbrdun9syw17wcxtn72.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1774774654/vser9rbh83baryvlolkh.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1774774654/rzx8uwvkopak3ty5evv1.webp"
+      ],
+      "category": "ui-ux-design",
+      "link": "https://www.skydomtech.com/"
     }
   }
 }
