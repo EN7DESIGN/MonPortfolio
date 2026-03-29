@@ -1,0 +1,9 @@
+{
+  "name": "monportfolio-api",
+  "version": "1.0.0",
+  "description": "API pour gérer le portfolio via Vercel Functions",
+  "scripts": {
+    "start": "vercel dev"
+  },
+  "dependencies": {}
+}

@@ -59,16 +59,15 @@
     // Fonction accessible globalement (nécessaire pour onclick)
     window.checkPassword = function() {
       const input = document.getElementById('adminPassword').value;
-      if (input === ADMIN_PASSWORD) {
+      if (input) {
+        sessionStorage.setItem('admin_password', input);
         document.getElementById('password-screen').classList.add('hidden');
         document.getElementById('Box1').classList.add('hidden');
         
         const manageSection = document.getElementById('manage-section');
         manageSection.classList.remove('hidden');
-        // On rétablit le display flex car la classe hidden met display: none !important
         manageSection.style.display = 'flex'; 
 
-        // On lance le chargement des données SEULEMENT après le login réussi
         initDataLoad();
       } else {
         document.getElementById('password-error').style.display = 'block';
@@ -108,18 +107,8 @@
       }
     }
 
-    function getGitHubToken() {
-        let token = sessionStorage.getItem('github_token');
-        if (!token) {
-            token = prompt("🔒 Sécurité : Veuillez entrer votre Token GitHub pour confirmer la suppression (il ne sera pas stocké sur le serveur) :");
-            if (token) {
-                // On peut le stocker temporairement pour la session
-                if(confirm("Voulez-vous mémoriser ce token pour cette session navigateur ?")) {
-                    sessionStorage.setItem('github_token', token);
-                }
-            }
-        }
-        return token;
+    function getAdminPassword() {
+        return sessionStorage.getItem('admin_password');
     }
 
     function renderProjects(data){
@@ -164,9 +153,10 @@
           
           if (newLink === null || newLink === currentLink) return;
 
-          const token = getGitHubToken();
-          if (!token) {
-              alert("Modification annulée : Token manquant.");
+          const password = getAdminPassword();
+          if (!password) {
+              alert("Session expirée. Veuillez vous reconnecter.");
+              location.reload();
               return;
           }
 
@@ -174,15 +164,30 @@
           status.textContent = 'Mise à jour du lien en cours...';
 
           try {
-            const module = await import('./update-data.js');
-            await module.updateProject(id, { link: newLink }, token);
+            const response = await fetch('/api/update-data', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                action: 'update',
+                password: password,
+                projectId: id,
+                updatedData: { link: newLink }
+              })
+            });
+
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.error || "Erreur lors de la mise à jour");
+
             project.link = newLink; // Mettre à jour localement
             status.textContent = `Lien mis à jour pour ${id}.`;
             alert("Lien mis à jour avec succès !");
           } catch (e) {
             console.error(e);
             status.textContent = 'Erreur : ' + e.message;
-            linkBtn.disabled = false;
+            if (e.message.includes('Accès refusé')) {
+              sessionStorage.removeItem('admin_password');
+              location.reload();
+            }
           } finally {
             linkBtn.disabled = false;
           }
@@ -194,28 +199,38 @@
         delBtn.addEventListener('click', async ()=>{
           if(!confirm(`Supprimer définitivement le projet « ${project.title || id} » ?`)) return;
           
-          const token = getGitHubToken();
-          if (!token) {
-              alert("Suppression annulée : Token manquant.");
+          const password = getAdminPassword();
+          if (!password) {
+              alert("Session expirée. Veuillez vous reconnecter.");
+              location.reload();
               return;
           }
 
           delBtn.disabled = true; 
-          status.textContent = 'Chargement du module...';
+          status.textContent = 'Suppression en cours...';
 
           try {
-            const module = await import('./update-data.js');
-            status.textContent = 'Suppression en cours sur GitHub...';
-            
-            await module.deleteProject(id, token);
+            const response = await fetch('/api/update-data', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                action: 'delete',
+                password: password,
+                projectId: id
+              })
+            });
+
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.error || "Erreur lors de la suppression");
             
             status.textContent = `Projet ${id} supprimé.`;
             item.remove();
           } catch (e) {
             console.error(e);
             status.textContent = 'Erreur : ' + e.message;
-            if(e.message.includes('Token GitHub invalide')) {
-                sessionStorage.removeItem('github_token'); // On oublie le mauvais token
+            if(e.message.includes('Accès refusé')) {
+                sessionStorage.removeItem('admin_password');
+                location.reload();
             }
             delBtn.disabled = false;
           }

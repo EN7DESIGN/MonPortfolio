@@ -81,12 +81,10 @@
 
   // Fonction accessible globalement (nécessaire pour onclick)
   window.checkPassword = function() {
-    const passInput = document.getElementById('adminPassword').value;
-    // On peut demander le token ici ou au moment de l'envoi
-    // Pour simplifier, on ne le demande pas ici, on le demandera au moment de l'envoi 
-    // ou on l'ajoute plus tard.
-    
-    if (passInput === ADMIN_PASSWORD) {
+    // On simule une vérification locale pour l'UI, 
+    // mais la vraie validation se fera côté serveur lors de l'envoi.
+    if (passInput) {
+      sessionStorage.setItem('admin_password', passInput);
       document.getElementById('password-screen').classList.add('hidden');
       document.getElementById('form-section').classList.remove('hidden');
       document.getElementById('Box1').classList.add('hidden');
@@ -102,17 +100,8 @@
     }
   });
 
-  function getGitHubToken() {
-    let token = sessionStorage.getItem('github_token');
-    if (!token) {
-        token = prompt("🔒 Sécurité : Veuillez entrer votre Token GitHub pour publier (il ne sera pas stocké sur le serveur) :");
-        if (token) {
-            if(confirm("Voulez-vous mémoriser ce token pour cette session navigateur ?")) {
-                sessionStorage.setItem('github_token', token);
-            }
-        }
-    }
-    return token;
+  function getAdminPassword() {
+    return sessionStorage.getItem('admin_password');
   }
 
   // Fonction pour uploader une image sur Cloudinary
@@ -220,9 +209,10 @@
     status.textContent = "Envoi en cours...";
 
     try {
-      const token = getGitHubToken();
-      if (!token) {
-        status.textContent = "Envoi annulé : Token manquant.";
+      const password = getAdminPassword();
+      if (!password) {
+        status.textContent = "Session expirée. Veuillez vous reconnecter.";
+        setTimeout(() => location.reload(), 2000);
         return; 
       }
 
@@ -239,36 +229,43 @@
         throw new Error("Le titre, la miniature et au moins une image de projet sont requis.");
       }
 
-      status.textContent = "Upload des images en cours...";
+      status.textContent = "Upload des images vers Cloudinary...";
 
-      // Upload des images vers Cloudinary
+      // Upload des images vers Cloudinary (côté client comme avant car c'est direct)
       const thumbnailUrlPromise = uploadToCloudinary(thumbnailFile);
       const projectImagesPromises = projectFiles.map(f => uploadToCloudinary(f));
 
       const thumbnailUrl = await thumbnailUrlPromise;
       const projectImagesUrls = await Promise.all(projectImagesPromises);
 
-      status.textContent = "Mise à jour de GitHub...";
+      status.textContent = "Mise à jour de la base de données...";
 
       // Convention : index 0 = Miniature, ensuite les images du projet
       const imagesList = [thumbnailUrl, ...projectImagesUrls];
 
-      // ⚙️ Importe la fonction de mise à jour
-      const { addProjectToData } = await import('./update-data.js');
+      // 🚀 Envoie les données à notre API Vercel
+      const response = await fetch('/api/update-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'add',
+          password: password,
+          data: {
+            title,
+            description,
+            category,
+            images: imagesList,
+            link: document.getElementById('link').value
+          }
+        })
+      });
 
-      // 🚀 Envoie les données à GitHub avec le token
-      const newId = await addProjectToData({
-        title,
-        description,
-        category,
-        images: imagesList,
-        link: document.getElementById('link').value
-      }, token);
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "Erreur lors de la mise à jour");
 
       status.innerHTML = `
         <h3>✅ Projet ajouté avec succès !</h3>
-        <p>ID : <code>${newId}</code></p>
-        <p>Les images ont été hébergées sur Cloudinary.</p>
+        <p>Les images ont été hébergées sur Cloudinary et data.json a été mis à jour.</p>
         <p>Actualise ton site dans quelques minutes (le temps que GitHub Pages se mette à jour).</p>
       `;
 
@@ -284,9 +281,10 @@
 
     } catch (error) {
       console.error(error);
-      if(error.message.includes('Token GitHub invalide')) {
-         sessionStorage.removeItem('github_token');
-         status.textContent = "❌ Erreur : Le Token GitHub est invalide.";
+      if(error.message.includes('Accès refusé')) {
+         sessionStorage.removeItem('admin_password');
+         status.textContent = "❌ Erreur : Mot de passe incorrect.";
+         setTimeout(() => location.reload(), 2000); 
       } else {
          status.innerHTML = `❌ Erreur :<br>${error.message}`;
       }
