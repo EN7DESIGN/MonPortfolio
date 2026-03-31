@@ -14,8 +14,7 @@
       "background": "Texture-UIUX.png",
       "projects": [
         "project-jago-boutique",
-        "project-skydom-technologies-1",
-        "project-njembo"
+        "project-skydom-technologies-1"
       ]
     },
     "visual-design": {
@@ -134,22 +133,6 @@
       ],
       "category": "ui-ux-design",
       "link": "https://www.skydomtech.com/"
-    },
-    "project-njembo": {
-      "title": "Njembo",
-      "description": "est une plateforme web dédiée à la musique gospel congolais.<br>Ce projet vise à offrir une solution simple pour mettre en avant<br>les chansons de mon client tout en facilitant l'accès à d’autres<br>musique gospel.",
-      "images": [
-        "https://res.cloudinary.com/en7design/image/upload/v1774984699/hxb0qjkgqwwiapbkygyd.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1774984701/pxcvaoorut4lic9fdsnj.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1774984700/dqcb7slsswcctj2u5mjy.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1774984700/rsrxzkion10clmsgcwpj.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1774984701/t8l3uovvw9w4ldojatx5.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1774984701/mbaukdmt1rrkszmmdvuj.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1774984702/kdtuklsiylhoptbyowjx.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1774984702/weg9udwzj2hanzlnpdjr.webp"
-      ],
-      "category": "ui-ux-design",
-      "link": ""
     }
   }
 }
