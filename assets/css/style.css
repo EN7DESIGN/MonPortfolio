@@ -949,6 +949,7 @@ footer {
 }
 
 .Btn-Back {
+  width: -moz-fit-content;
   width: fit-content;
   display: flex;
   align-items: center;
@@ -1001,6 +1002,7 @@ footer {
 }
 @media (max-width: 630px) {
   .Projet-TitleGrp .Left #project-description {
+    width: -moz-max-content;
     width: max-content;
   }
 }
@@ -1013,6 +1015,7 @@ footer {
 /* ----------------------------- */
 /* Right ---------------------- */
 .Projet-TitleGrp .Right {
+  height: -moz-fit-content;
   height: fit-content;
   display: flex;
   align-items: center;
@@ -1055,6 +1058,7 @@ footer {
 
 /* Bouton du bas */
 .isbottom {
+  width: -moz-max-content;
   width: max-content;
   margin: 0 auto;
   margin-top: 20px;
@@ -1135,8 +1139,7 @@ footer {
 /* ................. */
 /* Visual Design Layout (Accordions & Pinterest Grid) */
 .accordion-container {
-  width: 90%;
-  max-width: 1200px;
+  width: 100%;
   margin: 40px auto;
   display: flex;
   flex-direction: column;
@@ -1184,7 +1187,7 @@ footer {
 }
 
 .accordion-month {
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid #ababab;
 }
 .accordion-month-title {
   padding: 15px 20px;
@@ -1210,23 +1213,27 @@ footer {
 }
 .accordion-month-content {
   display: none;
-  padding: 15px 0;
+  padding: 26px 0;
 }
 
 /* Pinterest Grid */
 .pinterest-grid {
-  column-count: 3;
-  column-gap: 15px;
+  -moz-column-count: 3;
+       column-count: 3;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
   width: 100%;
 }
 @media (max-width: 860px) {
   .pinterest-grid {
-    column-count: 2;
+    -moz-column-count: 2;
+         column-count: 2;
   }
 }
 
 .grid-item {
-  break-inside: avoid;
+  -moz-column-break-inside: avoid;
+       break-inside: avoid;
   margin-bottom: 15px;
   border-radius: 8px;
   overflow: hidden;
@@ -1251,7 +1258,7 @@ footer {
 }
 @media (max-width: 500px) {
   .accordion-container {
-    width: 95%;
+    width: 100%;
   }
 }
 /* Lightbox / Preview */
@@ -1291,7 +1298,8 @@ footer {
   height: auto;
   max-width: 100%;
   max-height: 90vh;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .lightbox-close {
@@ -1307,5 +1315,3 @@ footer {
 .lightbox-close:hover {
   transform: scale(1.2);
 }
-
-/*# sourceMappingURL=style.css.map */
