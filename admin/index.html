@@ -38,7 +38,24 @@
       <!-- Formulaire (caché au départ) -->
       <div id="form-section" class="hidden">
         <h2>➕<br>Ajouter un projet</h2>
-        <input id="title" placeholder="Titre du projet" />
+        
+        <!-- Sélecteur pour Visual Design -->
+        <div id="vd-mode-container" class="hidden" style="margin-bottom: 1rem; padding: 0.5rem; background: #eee; border-radius: 6px;">
+          <label style="margin-right: 1rem; font-weight: 500;">Type d'ajout :</label>
+          <label><input type="radio" name="vd-mode" value="new" checked> Nouveau projet</label>
+          <label style="margin-left: 1rem;"><input type="radio" name="vd-mode" value="append"> Ajouter à l'existant</label>
+        </div>
+
+        <div id="title-container">
+          <input id="title" placeholder="Titre du projet" />
+        </div>
+
+        <div id="existing-project-container" class="hidden" style="margin-bottom: 1rem;">
+          <label for="existingProjectList" style="display:block; margin-bottom:0.3rem; font-weight:500;">Sélectionner le projet :</label>
+          <select id="existingProjectList" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+            <option value="">Chargement des projets...</option>
+          </select>
+        </div>
         <select id="category">
           <option value="brand-identity">Brand identity</option>
           <option value="ui-ux-design">UI/UX design</option>
@@ -137,12 +154,56 @@
   // Gérer l'affichage des champs Visual Design
   document.getElementById('category').addEventListener('change', function() {
     const vdFields = document.getElementById('visual-design-fields');
+    const vdMode = document.getElementById('vd-mode-container');
     if (this.value === 'visual-design') {
       vdFields.classList.remove('hidden');
+      vdMode.classList.remove('hidden');
+      loadExistingProjects();
     } else {
       vdFields.classList.add('hidden');
+      vdMode.classList.add('hidden');
+      document.getElementById('title-container').classList.remove('hidden');
+      document.getElementById('existing-project-container').classList.add('hidden');
+      document.getElementById('thumbnail').closest('div').classList.remove('hidden');
     }
   });
+
+  // Gérer le switch Nouveau/Existant
+  document.querySelectorAll('input[name="vd-mode"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+      const isAppend = this.value === 'append';
+      document.getElementById('title-container').classList.toggle('hidden', isAppend);
+      document.getElementById('existing-project-container').classList.toggle('hidden', !isAppend);
+      // Masquer la miniature si existant
+      document.getElementById('thumbnail').closest('div').classList.toggle('hidden', isAppend);
+      document.getElementById('description').classList.toggle('hidden', isAppend);
+      document.getElementById('link').classList.toggle('hidden', isAppend);
+    });
+  });
+
+  async function loadExistingProjects() {
+    const select = document.getElementById('existingProjectList');
+    try {
+      const r = await fetch('../data.json');
+      const data = await r.json();
+      const vdProjects = Object.entries(data.projects || {}).filter(([id, p]) => p.category === 'visual-design');
+      
+      select.innerHTML = '';
+      if (vdProjects.length === 0) {
+        select.innerHTML = '<option value="">Aucun projet visual-design trouvé</option>';
+        return;
+      }
+      
+      vdProjects.forEach(([id, p]) => {
+        const opt = document.createElement('option');
+        opt.value = p.title; // L'API utilise le titre pour slugifier et fusionner
+        opt.textContent = p.title.replace(/<[^>]*>/g, ' '); // Nettoyer HTML éventuel
+        select.appendChild(opt);
+      });
+    } catch (e) {
+      select.innerHTML = '<option value="">Erreur de chargement</option>';
+    }
+  }
 
   // Fonction pour uploader une image sur Cloudinary
   async function uploadToCloudinary(file) {
@@ -256,10 +317,19 @@
         return; 
       }
 
-      const title = document.getElementById('title').value;
+      let title = document.getElementById('title').value;
       const category = document.getElementById('category').value;
       const description = document.getElementById('description').value;
       
+      const isVisualDesign = category === 'visual-design';
+      const vdMode = document.querySelector('input[name="vd-mode"]:checked')?.value || 'new';
+      const isAppend = isVisualDesign && vdMode === 'append';
+
+      if (isAppend) {
+        title = document.getElementById('existingProjectList').value;
+        if (!title) throw new Error("Veuillez sélectionner un projet existant.");
+      }
+
       const thumbnailInput = document.getElementById('thumbnail');
       const thumbnailFile = thumbnailInput.files[0];
       const projectFiles = currentProjectFiles.slice();
@@ -271,7 +341,12 @@
       if (!title || projectFiles.length === 0) {
         throw new Error("Le titre et au moins une image de projet sont requis.");
       }
-      if (category === 'visual-design' && !year) {
+      if (!isAppend && !thumbnailFile && category !== 'visual-design') {
+         // Petite souplesse pour visual design merge, mais pour un nouveau projet thumbnail est mieux
+         // On laisse l'API décider du fallback sinon.
+      }
+
+      if (isVisualDesign && !year) {
         throw new Error("L'année est requise pour la catégorie Visual Design.");
       }
 
