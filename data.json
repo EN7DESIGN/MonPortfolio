@@ -22,7 +22,8 @@
       "title": "Visual<br>design",
       "background": "Texture-Visual.png",
       "projects": [
-        "project-canadian-boissons"
+        "project-canadian-boissons",
+        "project-orbit-cosmetics"
       ]
     },
     "graphic-design": {
@@ -174,6 +175,31 @@
             "https://res.cloudinary.com/en7design/image/upload/v1775300087/q2xf4f1qn2jgmq1wgpnv.webp",
             "https://res.cloudinary.com/en7design/image/upload/v1775300089/c8jpwxaheqzxirgnshlk.webp",
             "https://res.cloudinary.com/en7design/image/upload/v1775300093/t93a678hcs5ert6cgxbc.webp"
+          ]
+        }
+      }
+    },
+    "project-orbit-cosmetics": {
+      "title": "Orbit<br>Cosmetics",
+      "description": "Une filiale d’Orbit Entreprise spécialisée<br>dans les produits cosmétiques et d’hygiène.",
+      "category": "visual-design",
+      "layout": "visual-design",
+      "thumbnail": "https://res.cloudinary.com/en7design/image/upload/v1775332203/v04oca8avqq2fskiu6j0.webp",
+      "groups": {
+        "2026": {
+          "Avril": [
+            "https://res.cloudinary.com/en7design/image/upload/v1775332205/l1ucqfrycjynbyspu8bg.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775332206/nmajfwijzpn8gy1yfkny.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775332207/lfefar8qpfqr8voexvjz.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775332208/ewdt0wmjk8awkikfir78.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775332208/wisysqynw3n3tug47rie.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775332210/sy7fg6895gp2bjinamct.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775332207/p1vvxolapmygyni8pdvp.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775332209/ggvxivxkverejoes3snl.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775332210/oyhqfbylxnjbyclkd2gj.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775332209/hh1mvl6q6apu21sd8pwn.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775332210/q0xwbebacom45nsocirp.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775332210/rgwd1yljl36weic3ea6w.webp"
           ]
         }
       }
