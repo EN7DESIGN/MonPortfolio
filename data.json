@@ -21,7 +21,9 @@
     "visual-design": {
       "title": "Visual<br>design",
       "background": "Texture-Visual.png",
-      "projects": []
+      "projects": [
+        "project-canadian-boissons"
+      ]
     },
     "graphic-design": {
       "title": "Graphic<br>design",
@@ -150,6 +152,31 @@
       ],
       "category": "ui-ux-design",
       "link": ""
+    },
+    "project-canadian-boissons": {
+      "title": "Canadian<br>Boissons",
+      "description": "Une marque de boisson gazeuse<br>  commercialisée en Afrique.<br>Un produit d’Orbit Entreprise.",
+      "category": "visual-design",
+      "layout": "visual-design",
+      "thumbnail": "https://res.cloudinary.com/en7design/image/upload/v1775300072/v5bpf3fgqpk7swrcmhwf.webp",
+      "groups": {
+        "2026": {
+          "Avril": [
+            "https://res.cloudinary.com/en7design/image/upload/v1775300074/nf4qbwezkihcyst1krbk.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775300078/wbeelxb6bxkh873qbr8e.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775300077/dzkkbmfvzew1qlkmf15n.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775300084/kxtoutvj17vhwghxhqya.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775300085/cwfpoqqczuhekbr7qb5r.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775300086/huxzbsu4eyyt4nanprih.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775300076/qqnac1oxm2ymzns22gtr.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775300083/kld6prhjiug8cuxlcn6a.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775300095/he7hzkkfdx70ahvfinmt.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775300087/q2xf4f1qn2jgmq1wgpnv.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775300089/c8jpwxaheqzxirgnshlk.webp",
+            "https://res.cloudinary.com/en7design/image/upload/v1775300093/t93a678hcs5ert6cgxbc.webp"
+          ]
+        }
+      }
     }
   }
 }
