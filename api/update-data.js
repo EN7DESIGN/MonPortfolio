@@ -53,41 +53,101 @@ export default async function handler(req, res) {
     // 2. Appliquer l'action demandée
     if (action === 'add') {
       message = `Ajout du projet : ${data.title}`;
-      let newId = generateProjectId(data.title);
+      let targetId = generateProjectId(data.title);
 
-      let suffix = 1;
-      const originalId = newId;
-      while (currentContent.projects[newId]) {
-        newId = `${originalId}-${suffix}`;
-        suffix++;
+      // Pour visual-design, on essaie de fusionner si le projet existe déjà avec le même titre
+      const isVisualDesign = data.category === 'visual-design';
+      
+      if (isVisualDesign && currentContent.projects[targetId]) {
+          // Fusionner dans le projet existant
+          const project = currentContent.projects[targetId];
+          if (!project.groups) project.groups = {};
+          if (!project.groups[data.year]) project.groups[data.year] = {};
+          
+          // On concatène les nouvelles images/vidéos au mois spécifié
+          if (!project.groups[data.year][data.month]) {
+            project.groups[data.year][data.month] = [];
+          }
+          project.groups[data.year][data.month] = [...project.groups[data.year][data.month], ...data.images];
+          
+          // Mise à jour de la miniature si fournie (optionnel)
+          if (data.thumbnail) {
+            project.thumbnail = data.thumbnail;
+          }
+          message = `Mise à jour (Visual Design) : ${data.title} > ${data.year} > ${data.month}`;
+      } else {
+          // Création classique ou nouveau projet Visual Design
+          let newId = targetId;
+          if (!isVisualDesign) {
+            let suffix = 1;
+            while (currentContent.projects[newId]) {
+              newId = `${targetId}-${suffix}`;
+              suffix++;
+            }
+          }
+
+          if (isVisualDesign) {
+            currentContent.projects[newId] = {
+              title: data.title,
+              description: data.description,
+              category: data.category,
+              layout: "visual-design",
+              thumbnail: data.thumbnail || data.images[0], // Utilise la première image si pas de thumbnail
+              groups: {
+                [data.year]: {
+                  [data.month]: data.images
+                }
+              }
+            };
+          } else {
+            currentContent.projects[newId] = {
+              title: data.title,
+              description: data.description,
+              images: data.images,
+              category: data.category,
+              link: data.link || ""
+            };
+          }
+
+          if (!currentContent.categories[data.category].projects) {
+            currentContent.categories[data.category].projects = [];
+          }
+          if (!currentContent.categories[data.category].projects.includes(newId)) {
+            currentContent.categories[data.category].projects.push(newId);
+          }
       }
-
-      currentContent.projects[newId] = {
-        title: data.title,
-        description: data.description,
-        images: data.images,
-        category: data.category,
-        link: data.link || ""
-      };
-
-      if (!currentContent.categories[data.category].projects) {
-        currentContent.categories[data.category].projects = [];
-      }
-      currentContent.categories[data.category].projects.push(newId);
 
     } else if (action === 'delete') {
+      const { year, month } = req.body; // Récupérer year et month pour suppression partielle
+      
       if (!currentContent.projects[projectId]) {
         throw new Error(`Le projet ${projectId} n'existe pas.`);
       }
-      message = `Suppression du projet : ${projectId}`;
-      delete currentContent.projects[projectId];
 
-      Object.keys(currentContent.categories).forEach(catId => {
-        const cat = currentContent.categories[catId];
-        if (Array.isArray(cat.projects)) {
-          cat.projects = cat.projects.filter(id => id !== projectId);
+      const project = currentContent.projects[projectId];
+
+      if (year && month && project.groups && project.groups[year]) {
+        message = `Suppression du mois ${month} (${year}) dans ${projectId}`;
+        delete project.groups[year][month];
+        // Si l'année est vide, on la supprime aussi
+        if (Object.keys(project.groups[year]).length === 0) {
+          delete project.groups[year];
         }
-      });
+      } else if (year && project.groups && project.groups[year]) {
+        message = `Suppression de l'année ${year} dans ${projectId}`;
+        delete project.groups[year];
+      } else {
+        // Suppression complète du projet
+        message = `Suppression complète du projet : ${projectId}`;
+        delete currentContent.projects[projectId];
+
+        Object.keys(currentContent.categories).forEach(catId => {
+          const cat = currentContent.categories[catId];
+          if (Array.isArray(cat.projects)) {
+            cat.projects = cat.projects.filter(id => id !== projectId);
+          }
+        });
+      }
 
     } else if (action === 'update') {
       if (!currentContent.projects[projectId]) {

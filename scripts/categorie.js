@@ -36,10 +36,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   Object.entries(categoryProjects).forEach(([projectId, project]) => {
     const projectCard = document.createElement('div');
     projectCard.className = 'project-card';
-    // Set the background image dynamically based on the project's first image
-    if (project.images && project.images.length > 0) {
-      projectCard.style.backgroundImage = `url('${getImageUrl(project.images[0])}')`;
+    
+    // Set the background image dynamically based on the project's thumbnail or first image
+    const thumb = project.thumbnail || (project.images && project.images[0]);
+    if (thumb) {
+      projectCard.style.backgroundImage = `url('${getImageUrl(thumb)}')`;
     }
+
     projectCard.innerHTML = `
         <h3>${project.title}</h3>
         <p>${project.description}</p>

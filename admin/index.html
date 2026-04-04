@@ -47,6 +47,35 @@
         </select>
         <textarea id="description" placeholder="Description"></textarea>
         
+        <!-- Champs spécifiques pour Visual Design -->
+        <div id="visual-design-fields" class="hidden" style="margin-top: 1rem; padding: 1rem; background: #f9f9f9; border-radius: 8px; border: 1px dashed #ccc;">
+          <h4 style="margin-bottom: 1rem;">📅 Organisation temporelle</h4>
+          <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+            <div style="flex: 1;">
+              <label for="year" style="display:block; margin-bottom:0.3rem; font-size: 0.9rem;">Année (ex: 2026)</label>
+              <input type="text" id="year" placeholder="2026" style="width: 100%; padding: 0.6rem; border-radius: 4px; border: 1px solid #ddd;" />
+            </div>
+            <div style="flex: 1;">
+              <label for="month" style="display:block; margin-bottom:0.3rem; font-size: 0.9rem;">Mois (ex: Avril)</label>
+              <select id="month" style="width: 100%; padding: 0.6rem; border-radius: 4px; border: 1px solid #ddd;">
+                <option value="Janvier">Janvier</option>
+                <option value="Février">Février</option>
+                <option value="Mars">Mars</option>
+                <option value="Avril">Avril</option>
+                <option value="Mai">Mai</option>
+                <option value="Juin">Juin</option>
+                <option value="Juillet">Juillet</option>
+                <option value="Août">Août</option>
+                <option value="Septembre">Septembre</option>
+                <option value="Octobre">Octobre</option>
+                <option value="Novembre">Novembre</option>
+                <option value="Décembre">Décembre</option>
+              </select>
+            </div>
+          </div>
+          <p style="font-size: 0.8rem; color: #666;">Note : Les images ci-dessous seront ajoutées à ce mois spécifique dans l'année choisie.</p>
+        </div>
+        
         <div style="margin-top: 1rem; margin-bottom: 1rem;">
           <label for="thumbnail" style="display:block; margin-bottom:0.5rem; font-weight:500;">🎨 Miniature (Liste des projets)</label>
           <input type="file" id="thumbnail" accept="image/*" />
@@ -104,6 +133,16 @@
   function getAdminPassword() {
     return sessionStorage.getItem('admin_password');
   }
+
+  // Gérer l'affichage des champs Visual Design
+  document.getElementById('category').addEventListener('change', function() {
+    const vdFields = document.getElementById('visual-design-fields');
+    if (this.value === 'visual-design') {
+      vdFields.classList.remove('hidden');
+    } else {
+      vdFields.classList.add('hidden');
+    }
+  });
 
   // Fonction pour uploader une image sur Cloudinary
   async function uploadToCloudinary(file) {
@@ -225,40 +264,61 @@
       const thumbnailFile = thumbnailInput.files[0];
       const projectFiles = currentProjectFiles.slice();
 
+      const year = document.getElementById('year').value;
+      const month = document.getElementById('month').value;
+
       // Validation
-      if (!title || !thumbnailFile || projectFiles.length === 0) {
-        throw new Error("Le titre, la miniature et au moins une image de projet sont requis.");
+      if (!title || projectFiles.length === 0) {
+        throw new Error("Le titre et au moins une image de projet sont requis.");
+      }
+      if (category === 'visual-design' && !year) {
+        throw new Error("L'année est requise pour la catégorie Visual Design.");
       }
 
       status.textContent = "Upload des images vers Cloudinary...";
 
-      // Upload des images vers Cloudinary (côté client comme avant car c'est direct)
-      const thumbnailUrlPromise = uploadToCloudinary(thumbnailFile);
+      // Upload des images vers Cloudinary
+      let thumbnailUrl = "";
+      if (thumbnailFile) {
+        status.textContent = "Upload de la miniature...";
+        thumbnailUrl = await uploadToCloudinary(thumbnailFile);
+      }
+      
+      status.textContent = "Upload des images du projet...";
       const projectImagesPromises = projectFiles.map(f => uploadToCloudinary(f));
-
-      const thumbnailUrl = await thumbnailUrlPromise;
       const projectImagesUrls = await Promise.all(projectImagesPromises);
 
       status.textContent = "Mise à jour de la base de données...";
 
-      // Convention : index 0 = Miniature, ensuite les images du projet
-      const imagesList = [thumbnailUrl, ...projectImagesUrls];
+      // Données à envoyer
+      const payload = {
+        action: 'add',
+        password: password,
+        data: {
+          title,
+          description,
+          category,
+          images: projectImagesUrls, // Pour Visual Design, ce sont les images du mois
+          thumbnail: thumbnailUrl,
+          link: document.getElementById('link').value
+        }
+      };
+
+      if (category === 'visual-design') {
+        payload.data.year = year;
+        payload.data.month = month;
+      } else {
+        // Pour les autres catégories, on garde la convention index 0 = miniature si pas de thumbnail séparé
+        if (thumbnailUrl) {
+          payload.data.images = [thumbnailUrl, ...projectImagesUrls];
+        }
+      }
 
       // 🚀 Envoie les données à notre API Vercel
       const response = await fetch('/api/update-data', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: 'add',
-          password: password,
-          data: {
-            title,
-            description,
-            category,
-            images: imagesList,
-            link: document.getElementById('link').value
-          }
-        })
+        body: JSON.stringify(payload)
       });
 
       const result = await response.json();

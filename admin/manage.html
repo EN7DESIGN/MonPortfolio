@@ -8,6 +8,17 @@
   <link rel="stylesheet" href="/assets/css/system.css">
   <link rel="stylesheet" href="/assets/css/admin.css"> <!-- Ajout pour les styles de login -->
   <link rel="stylesheet" href="/assets/css/manage.css">
+  <style>
+    .danger-small {
+      background: #ff3b30;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0.8;
+    }
+    .danger-small:hover { opacity: 1; }
+  </style>
 </head>
 <body>
   <!-- Loader -->
@@ -133,6 +144,60 @@
         meta.className = 'manage-meta';
         meta.innerHTML = `<strong>${project.title || id}</strong><br><small>Catégorie: ${project.category || '-'}</small>`;
 
+        // Si c'est un projet Visual Design, on affiche l'arborescence
+        if (project.layout === 'visual-design' && project.groups) {
+          const tree = document.createElement('div');
+          tree.className = 'manage-tree';
+          tree.style.marginTop = '10px';
+          tree.style.paddingLeft = '20px';
+          tree.style.fontSize = '0.9rem';
+
+          Object.entries(project.groups).forEach(([year, months]) => {
+            const yearEl = document.createElement('div');
+            yearEl.style.marginBottom = '5px';
+            yearEl.innerHTML = `<span>📅 ${year}</span> `;
+            
+            const delYearBtn = document.createElement('button');
+            delYearBtn.textContent = 'Supprimer l\'année';
+            delYearBtn.className = 'danger-small';
+            delYearBtn.style.fontSize = '0.7rem';
+            delYearBtn.style.marginLeft = '10px';
+            delYearBtn.style.padding = '2px 6px';
+            delYearBtn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              deleteRequest(id, project.title, year);
+            });
+            yearEl.appendChild(delYearBtn);
+
+            const monthsList = document.createElement('ul');
+            monthsList.style.listStyle = 'none';
+            monthsList.style.paddingLeft = '20px';
+
+            Object.keys(months).forEach(month => {
+              const monthEl = document.createElement('li');
+              monthEl.style.margin = '3px 0';
+              monthEl.innerHTML = `<span>🌙 ${month}</span> `;
+              
+              const delMonthBtn = document.createElement('button');
+              delMonthBtn.textContent = 'Supprimer';
+              delMonthBtn.className = 'danger-small';
+              delMonthBtn.style.fontSize = '0.7rem';
+              delMonthBtn.style.marginLeft = '10px';
+              delMonthBtn.style.padding = '2px 6px';
+              delMonthBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                deleteRequest(id, project.title, year, month);
+              });
+              monthEl.appendChild(delMonthBtn);
+              monthsList.appendChild(monthEl);
+            });
+
+            yearEl.appendChild(monthsList);
+            tree.appendChild(yearEl);
+          });
+          meta.appendChild(tree);
+        }
+
         const actions = document.createElement('div');
         actions.className = 'manage-actions';
 
@@ -197,7 +262,15 @@
         delBtn.className = 'danger';
         delBtn.textContent = 'Supprimer';
         delBtn.addEventListener('click', async ()=>{
-          if(!confirm(`Supprimer définitivement le projet « ${project.title || id} » ?`)) return;
+          deleteRequest(id, project.title);
+        });
+
+        async function deleteRequest(projectId, projectTitle, year = null, month = null) {
+          let confirmMsg = `Supprimer définitivement le projet « ${projectTitle || projectId} » ?`;
+          if (year && month) confirmMsg = `Supprimer le mois « ${month} » (${year}) du projet « ${projectTitle} » ?`;
+          else if (year) confirmMsg = `Supprimer toute l'année « ${year} » du projet « ${projectTitle} » ?`;
+
+          if(!confirm(confirmMsg)) return;
           
           const password = getAdminPassword();
           if (!password) {
@@ -206,25 +279,29 @@
               return;
           }
 
-          delBtn.disabled = true; 
           status.textContent = 'Suppression en cours...';
 
           try {
+            const body = {
+              action: 'delete',
+              password: password,
+              projectId: projectId
+            };
+            if (year) body.year = year;
+            if (month) body.month = month;
+
             const response = await fetch('/api/update-data', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                action: 'delete',
-                password: password,
-                projectId: id
-              })
+              body: JSON.stringify(body)
             });
 
             const result = await response.json();
             if (!response.ok) throw new Error(result.error || "Erreur lors de la suppression");
             
-            status.textContent = `Projet ${id} supprimé.`;
-            item.remove();
+            status.textContent = `Action réussie sur ${projectId}.`;
+            // Recharger les données pour mettre à jour la vue
+            initDataLoad();
           } catch (e) {
             console.error(e);
             status.textContent = 'Erreur : ' + e.message;
@@ -232,9 +309,8 @@
                 sessionStorage.removeItem('admin_password');
                 location.reload();
             }
-            delBtn.disabled = false;
           }
-        });
+        }
 
         actions.appendChild(viewBtn);
         actions.appendChild(linkBtn);
