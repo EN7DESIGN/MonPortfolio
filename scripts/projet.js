@@ -57,12 +57,21 @@ document.addEventListener('DOMContentLoaded', async () => {
       const yearContent = document.createElement('div');
       yearContent.className = 'accordion-year-content';
 
-      // Trier les mois (on pourrait faire un tri chronologique plus précis, mais ici alphabétique ou manuel)
-      const months = Object.keys(project.groups[year]);
+      // Tri chronologique des mois (décroissant)
+      const monthOrder = {
+        'Janvier': 1, 'Février': 2, 'Mars': 3, 'Avril': 4, 'Mai': 5, 'Juin': 6,
+        'Juillet': 7, 'Août': 8, 'Septembre': 9, 'Octobre': 10, 'Novembre': 11, 'Décembre': 12
+      };
+      
+      const months = Object.keys(project.groups[year]).sort((a, b) => {
+        return (monthOrder[b] || 0) - (monthOrder[a] || 0);
+      });
 
       months.forEach((month, mIndex) => {
         const monthDiv = document.createElement('div');
-        monthDiv.className = `accordion-month ${mIndex === 0 ? 'active' : ''}`;
+        // On ouvre le premier mois (le plus récent) uniquement si c'est la première année (la plus récente)
+        const isMonthActive = (index === 0 && mIndex === 0);
+        monthDiv.className = `accordion-month ${isMonthActive ? 'active' : ''}`;
 
         const monthTitle = document.createElement('div');
         monthTitle.className = 'accordion-month-title';
