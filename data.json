@@ -22,7 +22,6 @@
       "title": "Visual<br>design",
       "background": "Texture-Visual.png",
       "projects": [
-        "project-projet-teste-01",
         "project-projet-test-02"
       ]
     },
@@ -153,25 +152,6 @@
       ],
       "category": "ui-ux-design",
       "link": ""
-    },
-    "project-projet-teste-01": {
-      "title": "Projet Teste-01",
-      "description": "Je teste",
-      "category": "visual-design",
-      "layout": "visual-design",
-      "thumbnail": "https://res.cloudinary.com/en7design/image/upload/v1775296718/uixcjvujtujvotuxvaat.jpg",
-      "groups": {
-        "2026": {
-          "Avril": [
-            "https://res.cloudinary.com/en7design/image/upload/v1775297519/khtorjzfpirkd5jlesoq.jpg",
-            "https://res.cloudinary.com/en7design/image/upload/v1775297519/d1ybhjeoumgohyrl6hsk.jpg",
-            "https://res.cloudinary.com/en7design/image/upload/v1775297520/hpl65yljgknagm7ipag9.jpg",
-            "https://res.cloudinary.com/en7design/image/upload/v1775297520/slq7dbdrnejaw9dfjmnr.jpg",
-            "https://res.cloudinary.com/en7design/image/upload/v1775297520/e5hx7cs5li4sb1x5wxal.jpg",
-            "https://res.cloudinary.com/en7design/image/upload/v1775297520/hm4a6muqz1bkd823jwft.jpg"
-          ]
-        }
-      }
     },
     "project-projet-test-02": {
       "title": "Projet Test-02",
