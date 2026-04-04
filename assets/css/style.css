@@ -1002,8 +1002,7 @@ footer {
 }
 @media (max-width: 630px) {
   .Projet-TitleGrp .Left #project-description {
-    width: -moz-max-content;
-    width: max-content;
+    width: 100%;
   }
 }
 @media (max-width: 630px) {
