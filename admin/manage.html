@@ -148,21 +148,18 @@
         if (project.layout === 'visual-design' && project.groups) {
           const tree = document.createElement('div');
           tree.className = 'manage-tree';
-          tree.style.marginTop = '10px';
-          tree.style.paddingLeft = '20px';
-          tree.style.fontSize = '0.9rem';
 
           Object.entries(project.groups).forEach(([year, months]) => {
             const yearEl = document.createElement('div');
-            yearEl.style.marginBottom = '5px';
-            yearEl.innerHTML = `<span>📅 ${year}</span> `;
+            yearEl.innerHTML = `<span>${year}</span> `;
+            yearEl.className = 'manage-tree-year';
             
             const delYearBtn = document.createElement('button');
             delYearBtn.textContent = 'Supprimer l\'année';
             delYearBtn.className = 'danger-small';
             delYearBtn.style.fontSize = '0.7rem';
             delYearBtn.style.marginLeft = '10px';
-            delYearBtn.style.padding = '2px 6px';
+            delYearBtn.style.padding = '6px 8px';
             delYearBtn.addEventListener('click', (e) => {
               e.stopPropagation();
               deleteRequest(id, project.title, year);
@@ -175,15 +172,14 @@
 
             Object.keys(months).forEach(month => {
               const monthEl = document.createElement('li');
-              monthEl.style.margin = '3px 0';
-              monthEl.innerHTML = `<span>🌙 ${month}</span> `;
+              monthEl.innerHTML = `<span>${month}</span> `;
               
               const delMonthBtn = document.createElement('button');
               delMonthBtn.textContent = 'Supprimer';
               delMonthBtn.className = 'danger-small';
               delMonthBtn.style.fontSize = '0.7rem';
               delMonthBtn.style.marginLeft = '10px';
-              delMonthBtn.style.padding = '2px 6px';
+              delMonthBtn.style.padding = '6px 8px';
               delMonthBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 deleteRequest(id, project.title, year, month);
