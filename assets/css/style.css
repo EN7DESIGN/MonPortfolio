@@ -949,6 +949,7 @@ footer {
 }
 
 .Btn-Back {
+  width: -moz-fit-content;
   width: fit-content;
   display: flex;
   align-items: center;
@@ -1001,6 +1002,7 @@ footer {
 }
 @media (max-width: 630px) {
   .Projet-TitleGrp .Left #project-description {
+    width: -moz-max-content;
     width: max-content;
   }
 }
@@ -1013,6 +1015,7 @@ footer {
 /* ----------------------------- */
 /* Right ---------------------- */
 .Projet-TitleGrp .Right {
+  height: -moz-fit-content;
   height: fit-content;
   display: flex;
   align-items: center;
@@ -1055,6 +1058,7 @@ footer {
 
 /* Bouton du bas */
 .isbottom {
+  width: -moz-max-content;
   width: max-content;
   margin: 0 auto;
   margin-top: 20px;
@@ -1215,18 +1219,22 @@ footer {
 
 /* Pinterest Grid */
 .pinterest-grid {
-  column-count: 3;
-  column-gap: 15px;
+  -moz-column-count: 3;
+       column-count: 3;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
   width: 100%;
 }
 @media (max-width: 860px) {
   .pinterest-grid {
-    column-count: 2;
+    -moz-column-count: 2;
+         column-count: 2;
   }
 }
 
 .grid-item {
-  break-inside: avoid;
+  -moz-column-break-inside: avoid;
+       break-inside: avoid;
   margin-bottom: 15px;
   border-radius: 8px;
   overflow: hidden;
@@ -1254,5 +1262,3 @@ footer {
     width: 95%;
   }
 }
-
-/*# sourceMappingURL=style.css.map */

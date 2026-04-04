@@ -37,6 +37,9 @@ input {
   color: #16171F;
   font-size: 1rem;
 }
+input::-moz-placeholder {
+  color: rgba(22, 23, 31, 0.6);
+}
 input::placeholder {
   color: rgba(22, 23, 31, 0.6);
 }
@@ -175,5 +178,3 @@ input::placeholder {
 .VisualDesign-Selecteur input[type=radio] {
   width: auto;
 }
-
-/*# sourceMappingURL=admin.css.map */

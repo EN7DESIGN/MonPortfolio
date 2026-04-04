@@ -86,7 +86,8 @@ body {
 .manage-thumb {
   width: 100px;
   height: 64px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 6px;
   background: #f0f0f0;
 }
@@ -135,5 +136,3 @@ body {
 .danger-small:hover {
   opacity: 1;
 }
-
-/*# sourceMappingURL=manage.css.map */
