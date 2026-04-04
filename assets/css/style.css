@@ -989,6 +989,7 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 22px;
+  width: 62%;
 }
 .Projet-TitleGrp .Left h3 {
   font-family: "Title";
@@ -1024,6 +1025,8 @@ footer {
   text-align: right;
   font-size: clamp(0.625rem, 0.5rem + 0.5556vw, 1rem);
   font-weight: 200;
+  width: -moz-max-content;
+  width: max-content;
 }
 @media (max-width: 630px) {
   .Projet-TitleGrp .Right p {
