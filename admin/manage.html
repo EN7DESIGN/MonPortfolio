@@ -134,11 +134,24 @@
         const item = document.createElement('div');
         item.className = 'manage-item';
 
-        const img = document.createElement('img');
-        img.className = 'manage-thumb';
-        img.alt = project.title || id;
-        img.src = getImageUrl(project.thumbnail || (project.images && project.images[0]) || '');
-        img.loading = 'lazy';
+        const thumbSrc = project.thumbnail || (project.images && project.images[0]) || '';
+        const isVideo = thumbSrc.match(/\.(mp4|webm|ogg|mov)$|^data:video/i) || thumbSrc.includes('/video/upload/');
+
+        let thumb;
+        if (isVideo) {
+          thumb = document.createElement('video');
+          thumb.muted = true;
+          thumb.loop = true;
+          thumb.playsInline = true;
+          thumb.autoplay = true;
+        } else {
+          thumb = document.createElement('img');
+        }
+        
+        thumb.className = 'manage-thumb';
+        thumb.alt = project.title || id;
+        thumb.src = getImageUrl(thumbSrc);
+        if (!isVideo) thumb.loading = 'lazy';
 
         const meta = document.createElement('div');
         meta.className = 'manage-meta';
@@ -312,7 +325,7 @@
         actions.appendChild(linkBtn);
         actions.appendChild(delBtn);
 
-        item.appendChild(img);
+        item.appendChild(thumb);
         item.appendChild(meta);
         item.appendChild(actions);
 

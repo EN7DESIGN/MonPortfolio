@@ -28,15 +28,28 @@ document.addEventListener('DOMContentLoaded', async () => {
       ? project.images.slice(1) 
       : (project.images || []);
 
-      imagesToDisplay.forEach(imgSrc => {
-        const img = document.createElement('img');
-        img.src = getImageUrl(imgSrc);
-        img.loading = 'lazy';
-        img.decoding = 'async';
-        img.alt = project.title;
-        img.style.cursor = 'zoom-in';
-        img.onclick = () => openLightbox(img.src, false);
-        imagesContainer.appendChild(img);
+      imagesToDisplay.forEach(src => {
+        const isVideo = src.match(/\.(mp4|webm|ogg|mov)$|^data:video/i) || src.includes('/video/upload/');
+        if (isVideo) {
+          const video = document.createElement('video');
+          video.src = getImageUrl(src);
+          video.muted = true;
+          video.loop = true;
+          video.playsInline = true;
+          video.autoplay = true;
+          video.style.cursor = 'zoom-in';
+          video.onclick = () => openLightbox(video.src, true);
+          imagesContainer.appendChild(video);
+        } else {
+          const img = document.createElement('img');
+          img.src = getImageUrl(src);
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          img.alt = project.title;
+          img.style.cursor = 'zoom-in';
+          img.onclick = () => openLightbox(img.src, false);
+          imagesContainer.appendChild(img);
+        }
       });
     }
   
@@ -92,14 +105,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             gridItem.className = 'grid-item';
             gridItem.style.cursor = 'zoom-in';
   
-            const isVideo = src.match(/\.(mp4|webm|ogg|mov)$|^data:video/i);
+            const isVideo = src.match(/\.(mp4|webm|ogg|mov)$|^data:video/i) || src.includes('/video/upload/');
             if (isVideo) {
               const video = document.createElement('video');
               video.src = getImageUrl(src);
               video.muted = true;
               video.loop = true;
               video.playsInline = true;
-              video.autoplay = true; // Auto-play muted as requested/implied for visual wow
+              video.autoplay = true;
               gridItem.appendChild(video);
               gridItem.onclick = () => openLightbox(video.src, true);
             } else {

@@ -37,10 +37,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     const projectCard = document.createElement('div');
     projectCard.className = 'project-card';
     
-    // Set the background image dynamically based on the project's thumbnail or first image
+    // Set the background image or video dynamically based on the project's thumbnail or first image
     const thumb = project.thumbnail || (project.images && project.images[0]);
     if (thumb) {
-      projectCard.style.backgroundImage = `url('${getImageUrl(thumb)}')`;
+      const isVideo = thumb.match(/\.(mp4|webm|ogg|mov)$|^data:video/i) || thumb.includes('/video/upload/');
+      if (isVideo) {
+        const video = document.createElement('video');
+        video.src = getImageUrl(thumb);
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.autoplay = true;
+        video.className = 'project-card-video';
+        projectCard.appendChild(video);
+      } else {
+        projectCard.style.backgroundImage = `url('${getImageUrl(thumb)}')`;
+      }
     }
 
     projectCard.innerHTML = `
