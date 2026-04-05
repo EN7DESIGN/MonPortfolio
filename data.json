@@ -15,8 +15,7 @@
       "projects": [
         "project-jago-boutique",
         "project-skydom-technologies-1",
-        "project-njembo",
-        "project-mbot-kin"
+        "project-njembo"
       ]
     },
     "visual-design": {
@@ -204,21 +203,6 @@
           ]
         }
       }
-    },
-    "project-mbot-kin": {
-      "title": "Mboté<br>Kin",
-      "description": "Une plateforme web de référence pour redorer l’image de Kinshasa et mettre en avant les atouts de la capitale de la RDC.",
-      "images": [
-        "https://res.cloudinary.com/en7design/image/upload/v1775401172/malrubnetoi4sujl20cw.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1775401177/xik7rklsngmlkn2qiosw.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1775401189/euy2surfqu4n7ui7fgkq.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1775401182/ar6vevsolpun2nk0cglp.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1775401197/elyamdvrkmnf7kejwmgj.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1775401194/cn5ynxk0vlmgqv9h2fkc.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1775401191/do4kag0olbnmmtgs6how.webp"
-      ],
-      "category": "ui-ux-design",
-      "link": ""
     }
   }
 }
