@@ -155,6 +155,22 @@
       "category": "ui-ux-design",
       "link": ""
     },
+    "project-mbot-kin": {
+      "title": "Mboté<br>Kin",
+      "description": "Une plateforme web de référence pour redorer l’image de Kinshasa et mettre en avant les atouts de la capitale de la RDC.",
+      "images": [
+        "https://res.cloudinary.com/en7design/image/upload/v1775406012/f9prccdlls43cjkgb0hj.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1775406015/ryvnovrabwacmkkzuk7g.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1775406016/uigwclxk5tmvxshkcjfn.webp",
+        "https://res.cloudinary.com/en7design/video/upload/v1775406031/j3hoxxsrtrb76bbppkll.mp4",
+        "https://res.cloudinary.com/en7design/image/upload/v1775406024/kzpha1arrcoa9kslbr6y.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1775406030/ne5wd8dlh0qurmomvgnn.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1775406036/txzaj8aze1b8wmrsh3xr.webp",
+        "https://res.cloudinary.com/en7design/image/upload/v1775406032/cnye64kwktt4zramvuv9.webp"
+      ],
+      "category": "ui-ux-design",
+      "link": ""
+    },
     "project-canadian-boissons": {
       "title": "Canadian<br>Boissons",
       "description": "Une marque de boisson gazeuse commercialisée en Afrique.<br>Un produit d’Orbit Entreprise.",
@@ -204,22 +220,6 @@
           ]
         }
       }
-    },
-    "project-mbot-kin": {
-      "title": "Mboté<br>Kin",
-      "description": "Une plateforme web de référence pour redorer l’image de Kinshasa et mettre en avant les atouts de la capitale de la RDC.",
-      "images": [
-        "https://res.cloudinary.com/en7design/image/upload/v1775406012/f9prccdlls43cjkgb0hj.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1775406015/ryvnovrabwacmkkzuk7g.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1775406016/uigwclxk5tmvxshkcjfn.webp",
-        "https://res.cloudinary.com/en7design/video/upload/v1775406031/j3hoxxsrtrb76bbppkll.mp4",
-        "https://res.cloudinary.com/en7design/image/upload/v1775406024/kzpha1arrcoa9kslbr6y.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1775406030/ne5wd8dlh0qurmomvgnn.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1775406036/txzaj8aze1b8wmrsh3xr.webp",
-        "https://res.cloudinary.com/en7design/image/upload/v1775406032/cnye64kwktt4zramvuv9.webp"
-      ],
-      "category": "ui-ux-design",
-      "link": ""
     }
   }
 }
